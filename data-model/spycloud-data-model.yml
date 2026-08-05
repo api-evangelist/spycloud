@@ -1,0 +1,293 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/docs/data-schema (+ openapi/ path selectors)
+note: 'The published OpenAPI definitions declare empty response schemas (type: object, properties: {}), so the entity
+  graph is taken from SpyCloud''s Data Schema documentation rather than derived from $refs. The full field-level
+  schema is customer-only behind portal.spycloud.com/docs/sc-full-data-schema.'
+hierarchy: Breach Catalog (one entry per ingested breach) -> Breach Records (one per user/persona in that breach)
+  -> data assets (fields on the record).
+entities:
+- name: BreachCatalogEntry
+  description: Metadata about one breach, combolist or malware corpus ingested by SpyCloud.
+  id_fields:
+  - field: id
+    type: int
+    note: Numerical breach ID; correlates to source_id on breach records.
+  - field: uuid
+    type: string
+    note: UUID v4 form of the breach ID, used in Firehose file naming.
+  fields:
+  - id
+  - uuid
+  - title
+  - description
+  - site
+  - site_description
+  - type
+  - num_records
+  - spycloud_publish_date
+  - acquisition_date
+  - breach_date
+  - public_date
+  - media_urls
+  - assets
+  - confidence
+  - combo_list_flag
+  - breach_main_category
+  - breach_category
+  - sensitive_source
+  - targeted_companies
+  - targeted_industries
+  - breached_companies
+  enums:
+    type:
+    - public
+    - private
+    breach_main_category:
+    - combolist
+    - breach
+    - malware
+    breach_category:
+    - combolist
+    - exfiltrated
+    - exposed
+    - infostealer
+    - phished
+    - scraped
+    - unknown
+  operations:
+  - eap-list-all-breach-metadata
+  - eap-get-metadata-for-a-breach
+  - cap-list-all-breach-metadata
+  - get-metadata-for-a-breach
+  - dp-list-all-breach-metadata
+  - dp-get-metadata-for-a-breach
+  - inv-list-all-breach-metadata
+  - inv-get-metadata-for-a-breach
+  - sip-list-all-breach-metadata
+  - sip-get-metadata-for-a-breach
+- name: BreachRecord
+  description: One user/persona extracted from a breach, carrying the data assets found for them.
+  id_fields:
+  - field: document_id
+    type: uuid v4
+    note: Unique record identifier; always returned even under asset allow-listing.
+  always_returned:
+  - document_id
+  - source_id
+  - spycloud_publish_date
+  field_groups:
+  - group: identity
+    fields:
+    - email
+    - email_domain
+    - email_username
+    - backup_email
+    - backup_email_username
+    - username
+    - domain
+    - target_domain
+    - target_subdomain
+    - target_url
+    - dob
+    - social_twitter
+  - group: credentials
+    fields:
+    - password
+    - password_type
+    - password_plaintext
+    - salt
+    - account_secret
+    - account_secret_question
+    - api_token
+    - api_token_secret
+    - private_key
+    - private_key_password
+    - public_key
+  - group: account
+    fields:
+    - account_id
+    - account_type
+    - account_status
+    - account_title
+    - account_caption
+    - account_nickname
+    - account_notes
+    - account_image_url
+    - account_signup_time
+    - account_login_time
+    - account_last_activity_time
+    - account_modification_time
+    - account_password_date
+    - num_posts
+    - service
+    - service_expiration
+  - group: infected-device
+    fields:
+    - infected_machine_id
+    - infected_path
+    - infected_time
+    - log_id
+    - malware_family
+    - user_hostname
+    - user_os
+    - user_browser
+    - user_agent
+    - user_sys_domain
+    - user_sys_registered_organization
+    - user_sys_registered_owner
+    - mac_address
+    - system_model
+    - system_install_date
+    - display_resolution
+    - keyboard_languages
+    - av_softwares
+    - logon_server
+    - port
+  - group: capture
+    fields:
+    - form_post_data
+    - form_cookies_data
+  - group: scoring
+    fields:
+    - severity
+    - source_id
+    - spycloud_publish_date
+    - status
+  operations:
+  - eap-get-records-by-email-address
+  - get-records-by-email-address
+  - cap-get-records-by-email-address
+  - dp-records-by-email
+  - idl-get-records-by-email
+- name: WatchlistIdentifier
+  description: An email, domain, subdomain or IP monitored on an Enterprise ATO watchlist.
+  id_fields:
+  - field: identifier
+    type: string
+  enums:
+    watchlist_type:
+    - email
+    - domain
+    - subdomain
+    - ip
+    verified:
+    - 'yes'
+    - 'no'
+  operations:
+  - eap-list-all-identifiers
+  - eap-get-an-identifier
+  - eap-create-an-identifier
+  - eap-delete-an-identifier
+  - eap-verify-an-identifier
+  - eap-get-all-records-in-watchlist
+- name: CompassDevice
+  description: A malware-infected device observed in Compass telemetry.
+  id_fields:
+  - field: infected_machine_id
+    type: string
+  operations:
+  - eap-list-all-compass-devices
+  - eap-get-records-for-a-device
+  - eap-get-all-records
+- name: CompassApplication
+  description: An application (domain or subdomain) targeted by malware on a monitored device.
+  id_fields:
+  - field: target_application
+    type: string
+  operations:
+  - eap-list-all-applications
+  - eap-get-records-for-an-application
+- name: CompromisedCard
+  description: A compromised payment/gift/loyalty card record, addressed by BIN.
+  id_fields:
+  - field: bin
+    type: string
+    note: 6-character card BIN; up to 10 comma-delimited per request.
+  operations:
+  - fd-get-credit-cards-by-bin
+  - list-credit-cards
+- name: SessionCookie
+  description: A session cookie recaptured from infostealer malware, addressed by cookie domain.
+  id_fields:
+  - field: cookie_domain
+    type: string
+  filters:
+  - cookie_name
+  - since_cookie_expiration
+  - until_cookie_expiration
+  operations:
+  - sip-get-cookies-for-domain
+- name: IdentityGraphNode
+  description: An IDLink correlated identity reachable by pivoting from an email, phone or username.
+  id_fields:
+  - field: max_depth
+    type: int
+    note: 1-4 pivot levels; 1 is a direct query.
+  output_formats:
+  - json
+  - json-graph-spec
+  operations:
+  - idl-get-records-by-email
+  - idl-get-records-by-phone-number
+  - idl-get-records-by-username
+- name: ExposureStats
+  description: Aggregate exposure counts for a domain or email without the underlying records.
+  filters:
+  - lookback
+  - skip_domain
+  operations:
+  - get-stats-for-a-domain
+  - prospecting-get-stats-for-an-email
+relationships:
+- from: BreachRecord
+  to: BreachCatalogEntry
+  type: belongs_to
+  via: source_id -> BreachCatalogEntry.id
+- from: BreachCatalogEntry
+  to: BreachRecord
+  type: has_many
+  via: id -> BreachRecord.source_id
+  cardinality_field: num_records
+- from: CompassDevice
+  to: BreachRecord
+  type: has_many
+  via: infected_machine_id
+- from: CompassApplication
+  to: BreachRecord
+  type: has_many
+  via: target_application -> target_domain / target_subdomain
+- from: BreachRecord
+  to: CompassDevice
+  type: belongs_to
+  via: infected_machine_id
+- from: WatchlistIdentifier
+  to: BreachRecord
+  type: has_many
+  via: identifier matched against email / domain / subdomain / ip
+- from: SessionCookie
+  to: BreachCatalogEntry
+  type: belongs_to
+  via: source_id
+- from: IdentityGraphNode
+  to: BreachRecord
+  type: has_many
+  via: pivot on email / phone / username up to max_depth
+normalization:
+- asset: email
+  rule: lowercased for indexing
+- asset: username
+  rule: lowercased
+- asset: social_*
+  rule: lowercased
+- asset: '*_time'
+  rule: ISO 8601 datetime
+- asset: '*_date'
+  rule: ISO 8601 date
+- asset: dob
+  rule: ISO 8601 datetime; time component may be irrelevant
+password_semantics:
+- condition: password_type == plaintext
+  meaning: The original password was stored/exposed in plaintext.
+- condition: password_type != plaintext AND password_plaintext present
+  meaning: SpyCloud cracked the original hashed password.

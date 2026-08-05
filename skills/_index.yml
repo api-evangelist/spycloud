@@ -1,0 +1,100 @@
+generated: '2026-08-05'
+method: generated
+source: openapi/ (operationIds verified against the harvested specs) + https://docs.spycloud.com/public-sc/docs/api-guidelines
+note: SpyCloud publishes no AGENTS.md or first-party agent skills; these are API Evangelist generated operating
+  instructions grounded in real published operationIds.
+skills:
+- file: spycloud-employee-ato-triage.md
+  name: Triage employee credential exposure
+  description: Find and triage recaptured credential exposures for a monitored workforce domain or employee, using
+    the SpyCloud Enterprise ATO Prevention API watchlist.
+  api: openapi/spycloud-enterprise-ato-prevention-openapi.yml
+  operations:
+  - eap-list-all-identifiers
+  - eap-get-all-records-in-watchlist
+  - eap-get-records-by-domain
+  - eap-get-records-by-email-address
+  - eap-list-all-breach-metadata
+  - eap-get-metadata-for-a-breach
+- file: spycloud-consumer-login-risk-check.md
+  name: Check a consumer login for credential exposure
+  description: Decide whether a consumer email, username, phone or IP is exposed in recaptured breach data at login
+    or account creation, including a zero-knowledge credential check.
+  api: openapi/spycloud-consumer-ato-prevention-openapi.yml
+  operations:
+  - cap-zero-knowledge
+  - cap-get-records-by-email-address
+  - get-records-by-usernames
+  - cap-get-records-by-phone-number
+  - cap-get-records-by-ip-address
+  - cap-list-all-breach-metadata
+- file: spycloud-nist-password-screening.md
+  name: Screen a password against compromised-credential data
+  description: Check a proposed password at account creation or reset against SpyCloud recaptured credentials using
+    a k-anonymity hash-prefix lookup, per NIST SP 800-63B.
+  api: openapi/spycloud-nist-password-openapi.yml
+  operations:
+  - nist-check-password-hash
+- file: spycloud-malware-infection-remediation.md
+  name: Investigate a malware-infected device and its exposed applications
+  description: Use SpyCloud Compass telemetry to enumerate malware-infected devices, the applications they exposed,
+    and the credentials siphoned from them, so remediation goes past a password reset.
+  api: openapi/spycloud-enterprise-ato-prevention-openapi.yml
+  operations:
+  - eap-list-all-compass-devices
+  - eap-get-records-for-a-device
+  - eap-list-all-applications
+  - eap-get-records-for-an-application
+  - eap-get-all-records
+- file: spycloud-session-hijacking-exposure.md
+  name: Find stolen session cookies for a domain
+  description: Detect session-hijacking exposure by retrieving session cookies recaptured from infostealer malware
+    for a given cookie domain, so live sessions can be invalidated.
+  api: openapi/spycloud-session-identity-protection-openapi.yml
+  operations:
+  - sip-get-cookies-for-domain
+  - sip-list-all-breach-metadata
+  - sip-get-metadata-for-a-breach
+- file: spycloud-threat-actor-investigation.md
+  name: Pivot across recaptured data to profile a threat actor
+  description: Run a multi-selector investigation across the SpyCloud Cybercrime Investigations API, pivoting between
+    emails, usernames, passwords, IPs, devices, social handles and identity documents.
+  api: openapi/spycloud-investigations-openapi.yml
+  operations:
+  - get-records-by-email-address
+  - inv-get-records-by-username
+  - inv-get-records-by-password
+  - inv-get-records-by-ip-address
+  - inv-get-records-by-infected-machine-id
+  - inv-get-records-by-log-id
+  - inv-get-records-by-social-handle
+  - inv-get-records-by-domain
+  - inv-get-records-by-phone-number
+  - inv-get-records-by-email-username
+  - inv-list-all-breach-metadata
+  - inv-get-metadata-for-a-breach
+- file: spycloud-identity-correlation-idlink.md
+  name: Correlate an identity across recaptured data with IDLink
+  description: Use the SpyCloud IDLink API to expand one email, phone number or username into a correlated identity
+    graph up to four pivot levels deep.
+  api: openapi/spycloud-idlink-openapi.yml
+  operations:
+  - idl-get-records-by-email
+  - idl-get-records-by-phone-number
+  - idl-get-records-by-username
+- file: spycloud-domain-exposure-assessment.md
+  name: Size up exposure for a domain or email without pulling records
+  description: Use the SpyCloud Prospecting API to get aggregate breach and malware exposure counts for a domain
+    or email address over a lookback window.
+  api: openapi/spycloud-prospecting-openapi.yml
+  operations:
+  - get-stats-for-a-domain
+  - prospecting-get-stats-for-an-email
+- file: spycloud-compromised-card-monitoring.md
+  name: Monitor compromised cards by BIN
+  description: Retrieve compromised credit, debit, gift and loyalty card records recaptured from breaches and malware,
+    addressed by six-character BIN.
+  api: openapi/spycloud-compromised-credit-card-openapi.yml
+  operations:
+  - list-credit-cards
+  - fd-get-credit-cards-by-bin

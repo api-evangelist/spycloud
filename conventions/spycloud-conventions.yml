@@ -1,0 +1,83 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/docs/api-guidelines
+style: REST / JSON over HTTPS. Resource-oriented URLs, HTTP status codes signal errors, JSON returned for every
+  response including errors.
+authentication:
+  style: api-key-header
+  header: x-api-key
+  artifact: authentication/spycloud-authentication.yml
+  notes: Header casing differs between specs (x-api-key vs X-API-KEY); HTTP header names are case-insensitive.
+idempotency:
+  supported: false
+  evidence: No Idempotency-Key header or equivalent is documented, and no such parameter appears in any of the nine
+    OpenAPI definitions.
+  note: 68 of 69 published operations are GET (naturally idempotent); the write surface is POST /watchlist/create
+    and DELETE /watchlist/{identifier}/delete on the Enterprise ATO API, neither of which documents a client-supplied
+    idempotency key.
+pagination:
+  style: cursor
+  param: cursor
+  page_size: 1000
+  page_size_customizable: false
+  response_field: cursor
+  cursor_ttl_seconds: 120
+  detail: A non-empty cursor in the response means more pages exist; pass it back on the next call. Cursor tokens
+    expire after roughly 2 minutes.
+  docs: https://docs.spycloud.com/public-sc/docs/api-guidelines
+filtering:
+  common_params:
+  - name: since
+    detail: Start of a date range on spycloud_publish_date (ISO 8601 yyyy-mm-dd).
+  - name: until
+    detail: End of a date range on spycloud_publish_date.
+  - name: since_modification_date
+    detail: Start of a date range on record_modification_date.
+  - name: until_modification_date
+    detail: End of a date range on record_modification_date.
+  - name: severity
+    detail: Comma-delimited numeric severity codes.
+  - name: source_id
+    detail: Comma-delimited numeric breach source IDs.
+  - name: salt
+    detail: Per-call override of the salt used when asset hashing is enabled.
+batching:
+  supported: true
+  detail: Several selectors accept up to 10 comma-delimited values in the path (e.g. up to 10 email addresses, up
+    to 10 card BINs).
+hashed_lookup:
+  supported: true
+  detail: Most selectors accept a sha1/sha256/sha512 hash of the value instead of plaintext, so callers need not
+    transmit raw PII. The NIST Password API and the Consumer ATO zero-knowledge endpoint use k-anonymity hash-prefix
+    lookups.
+date_format:
+  params: ISO 8601 date, yyyy-mm-dd
+  payload: ISO 8601 datetime, YYYY-MM-DDTHH:MM:SSZ
+encoding:
+  charset: UTF-8
+  note: All API responses are UTF-8 encoded. Special characters in username/password path segments must be URL-escaped
+    by the client.
+versioning:
+  scheme: uri-path
+  detail: Version is a segment of the base path (enterprise-v2, sp-v2, investigations-v2, idl-v2, prospecting-v2,
+    nist-password-v2, fd-v1, sip-v1). Backwards-incompatible changes ship as a new version alongside the old codebase;
+    callers override by editing the version number in the request URL.
+  artifact: lifecycle/spycloud-lifecycle.yml
+errors:
+  envelope: JSON body on every response including errors
+  format: proprietary (not RFC 9457 application/problem+json)
+  artifact: errors/spycloud-problem-types.yml
+rate_limits:
+  signal: HTTP 429 for both per-key rate limits and monthly quota exhaustion
+  headers_documented: false
+  retry: Documented exponential backoff (3s then 9s) or sliding retry (3s then 4s), then log and fail open.
+  artifact: rate-limits/spycloud-rate-limits.yml
+request_tracing:
+  header: null
+  note: No request-id / correlation header is documented.
+expansion:
+  supported: false
+metadata:
+  supported: false
+cors:
+  supported: true

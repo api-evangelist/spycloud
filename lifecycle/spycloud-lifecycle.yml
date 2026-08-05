@@ -1,0 +1,43 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/docs/api-guidelines
+versioning:
+  scheme: uri-path
+  docs: https://docs.spycloud.com/public-sc/docs/api-guidelines
+  policy: Backwards-incompatible changes are released as a new version without affecting the old codebase, accompanied
+    by a changelog entry. Requests use the current API version unless the caller overrides the version segment in
+    the request URL.
+  current:
+  - api: Enterprise ATO Prevention
+    version: enterprise-v2
+  - api: Consumer ATO Prevention
+    version: sp-v2
+  - api: Data Partnership
+    version: sp-v2
+  - api: Cybercrime Investigations
+    version: investigations-v2
+  - api: IDLink
+    version: idl-v2
+  - api: Prospecting
+    version: prospecting-v2
+  - api: NIST Password
+    version: nist-password-v2
+  - api: Compromised Credit Card
+    version: fd-v1
+  - api: Session Identity Protection
+    version: sip-v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: No dedicated deprecation or sunset policy is published, and no RFC 8594 Sunset/Deprecation header support
+    is documented. Old versions are described as remaining available when a new version ships, but no end-of-life
+    window is stated.
+sla:
+  uptime_target: 99.9%
+  source: https://spycloud.com/products/spycloud-api/
+  note: '"99.9% uptime SLA-backed availability" is stated on the API product page; the SLA document itself is contractual
+    and not public.'
+status_page: https://status.spycloud.com/
+changelog: https://docs.spycloud.com/public-sc/page/release-notes-1
+deprecated_operations: []

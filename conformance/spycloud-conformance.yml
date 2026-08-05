@@ -1,0 +1,68 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/ + https://docs.spycloud.com/public-sc/docs/api-guidelines + https://spycloud.com/legal/governance-risk-and-compliance/
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: 'All nine published definitions declare openapi: 3.1.0.'
+- id: rest
+  conforms: true
+  evidence: 'Resource-oriented URLs, HTTP verbs, HTTP status codes for errors, JSON responses (docs: API Guidelines).'
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme in any spec; authentication is an x-api-key header only.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are JSON but not application/problem+json; no type/title/detail envelope is published.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: https://spycloud.com/.well-known/security.txt returns 200 with Contact, Encryption, Preferred-Languages,
+    Canonical and Hiring fields.
+- id: rfc9727-api-catalog
+  conforms: true
+  evidence: https://docs.spycloud.com/.well-known/api-catalog returns 200 application/linkset+json with service-desc
+    and service-doc links.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support documented.
+- id: iso8601-dates
+  conforms: true
+  evidence: 'Date parameters are yyyy-mm-dd; payload timestamps are YYYY-MM-DDTHH:MM:SSZ (docs: Data Schema).'
+- id: cursor-pagination
+  conforms: true
+  evidence: cursor query parameter present on 43 operations; fixed 1,000-record pages, 2-minute cursor TTL.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key contract documented or present in any spec.
+- id: k-anonymity-password-check
+  conforms: true
+  evidence: NIST Password API GET /check/hashes/{hash} takes a 5-hex-digit hash prefix; Consumer ATO GET /check/hashes/credentials/{hash_prefix}
+    accepts 5-8 character prefixes.
+- id: nist-sp-800-63b
+  conforms: true
+  evidence: SpyCloud publishes the NIST Password API for screening compromised passwords at account creation/reset
+    per NIST SP 800-63B guidance.
+- id: tls-1.2-1.3
+  conforms: true
+  evidence: API Guidelines enumerate supported TLS 1.2 and 1.3 cipher suites; live probe of api.spycloud.io negotiated
+    TLSv1.3.
+- id: cors
+  conforms: true
+  evidence: CORS explicitly supported per API Guidelines.
+- id: soc2
+  conforms: true
+  evidence: Named on https://spycloud.com/legal/governance-risk-and-compliance/ and published via the Vanta trust
+    center at https://app.vanta.com/spycloud.com/trust/itvhddyqxnnf6gi6aatcx
+- id: iso-27001
+  conforms: true
+  evidence: Named on https://spycloud.com/legal/governance-risk-and-compliance/
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is published; the delivery model is REST pull plus a customer-only
+    Firehose file feed.
+- id: graphql
+  conforms: false
+- id: grpc
+  conforms: false

@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for SpyCloud Enterprise ATO Prevention API
+  version: 1.0.0
+extends: openapi/spycloud-enterprise-ato-prevention-openapi.yml
+x-generated: '2026-08-05'
+x-method: generated
+x-source: https://docs.spycloud.com/public-sc/reference — spec harvested verbatim from the ReadMe hub; this overlay
+  carries only API Evangelist annotations.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: spycloud
+    x-apievangelist-api: SpyCloud Enterprise ATO Prevention API
+    x-apievangelist-harvested: '2026-08-05'
+    x-apievangelist-source: https://docs.spycloud.com/public-sc/reference
+    x-apievangelist-artifacts:
+      authentication: authentication/spycloud-authentication.yml
+      conventions: conventions/spycloud-conventions.yml
+      errors: errors/spycloud-problem-types.yml
+      lifecycle: lifecycle/spycloud-lifecycle.yml
+      rate_limits: rate-limits/spycloud-rate-limits.yml
+      data_model: data-model/spycloud-data-model.yml
+- target: $.info
+  update:
+    x-apievangelist-access:
+      model: contracted
+      self_serve: false
+      note: API keys are issued from the SpyCloud Customer Portal against a commercial contract; there is no public
+        self-serve signup or free tier.
+      ip_allow_list_required: true
+- target: $.paths[*][*]
+  update:
+    x-apievangelist-conventions:
+      pagination: cursor (1000/page, 2-minute cursor TTL) where the operation declares a cursor parameter
+      auth: x-api-key header
+      error_catalog: errors/spycloud-problem-types.yml
+- target: $
+  update:
+    x-apievangelist-gaps:
+    - 'Response schemas are declared as empty objects (type: object, properties: {}); the real record shape is documented
+      separately at https://docs.spycloud.com/public-sc/docs/data-schema and fully only behind the customer portal.'
+    - Only 200 and 400 are enumerated on most operations, though the API Guidelines document 403, 422, 429, 500
+      and 504 across the surface.
+    - No tags are declared, so operations do not group in generated documentation.
+    - No servers[] description or environment variants; there is no sandbox host.

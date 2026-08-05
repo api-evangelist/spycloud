@@ -1,0 +1,444 @@
+generated: '2026-08-05'
+method: derived
+status: candidate
+source: openapi/ (9 SpyCloud OpenAPI 3.1.0 definitions)
+published: false
+search_evidence:
+- probe: https://mcp.spycloud.com
+  http_status: 404
+- probe: https://mcp.spycloud.io
+  http_status: null
+  note: DNS does not resolve
+- probe: https://api.spycloud.io/mcp
+  http_status: 403
+- probe: npm / docs / web search for "SpyCloud MCP server"
+  result: no first-party MCP server found
+note: SpyCloud publishes no hosted or remote MCP server as of this probe. The tools below are a CANDIDATE surface
+  derived one-to-one from published OpenAPI operations — they are a proposal, not something SpyCloud operates. Every
+  tool inherits its real input schema from the referenced operation parameters.
+server:
+  name: spycloud
+  transport: http
+  url: null
+authentication:
+  style: api-key-header
+  header: x-api-key
+  artifact: authentication/spycloud-authentication.yml
+coverage:
+  rest_operations: 69
+  candidate_tools: 69
+tools:
+- name: fd_get_credit_cards_by_bin
+  description: Get credit cards by BIN
+  source_operation: openapi/spycloud-compromised-credit-card-openapi.yml#fd-get-credit-cards-by-bin
+  method: GET
+  path: /data/cc/bins/{bin}
+  server: https://api.spycloud.io/fd-v1
+- name: list_credit_cards
+  description: List credit cards
+  source_operation: openapi/spycloud-compromised-credit-card-openapi.yml#list-credit-cards
+  method: GET
+  path: /data/cc/bins
+  server: https://api.spycloud.io/fd-v1
+- name: cap_get_records_by_email_address
+  description: Get records by email address
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-email-address
+  method: GET
+  path: /breach/data/emails/{email}
+  server: https://api.spycloud.io/sp-v2
+- name: cap_get_records_by_ip_address
+  description: Get records by IP address
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-ip-address
+  method: GET
+  path: /breach/data/ips/{ip}
+  server: https://api.spycloud.io/sp-v2
+- name: get_records_by_usernames
+  description: Get records by usernames
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#get-records-by-usernames
+  method: GET
+  path: /breach/data/usernames/{username}
+  server: https://api.spycloud.io/sp-v2
+- name: cap_list_all_breach_metadata
+  description: List all breach metadata
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-list-all-breach-metadata
+  method: GET
+  path: /breach/catalog/
+  server: https://api.spycloud.io/sp-v2
+- name: get_metadata_for_a_breach
+  description: Get metadata for a breach
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#get-metadata-for-a-breach
+  method: GET
+  path: /breach/catalog/{id}
+  server: https://api.spycloud.io/sp-v2
+- name: cap_zero_knowledge
+  description: Zero Knowledge
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-zero-knowledge
+  method: GET
+  path: /check/hashes/credentials/{hash_prefix}
+  server: https://api.spycloud.io/sp-v2
+- name: cap_get_records_by_phone_number
+  description: Get records by phone number
+  source_operation: openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-phone-number
+  method: GET
+  path: /breach/data/phone-numbers/{phone_number}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_domain
+  description: Get records by domain
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-domain
+  method: GET
+  path: /breach/data/domains/{domain}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_records_by_email
+  description: Get records by email
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-records-by-email
+  method: GET
+  path: /breach/data/emails/{email}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_ip_address
+  description: Get records by IP address
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-ip-address
+  method: GET
+  path: /breach/data/ips/{ip}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_health_insurance_id
+  description: Get records by Health Insurance ID
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-health-insurance-id
+  method: GET
+  path: /breach/data/health-insurance-ids/{health_insurance_id}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_username
+  description: Get records by username
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-username
+  method: GET
+  path: /breach/data/usernames/{username}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_bank_number
+  description: Get records by bank number
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-bank-number
+  method: GET
+  path: /breach/data/bank-numbers/{bank_number}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_credit_card_number
+  description: Get records by credit card number
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-credit-card-number
+  method: GET
+  path: /breach/data/cc-numbers/{cc_number}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_drivers_license
+  description: Get records by drivers license
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-drivers-license
+  method: GET
+  path: /breach/data/drivers-licenses/{drivers_license}
+  server: https://api.spycloud.io/sp-v2
+- name: get_records_by_national_id
+  description: Get records by National ID
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#get-records-by-national-id
+  method: GET
+  path: /breach/data/national-ids/{national_id}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_passport_number
+  description: Get records by passport number
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-passport-number
+  method: GET
+  path: /breach/data/passport-numbers/{passport_number}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_list_all_breach_metadata
+  description: List all breach metadata
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-list-all-breach-metadata
+  method: GET
+  path: /breach/catalog/
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_metadata_for_a_breach
+  description: Get metadata for a breach
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-metadata-for-a-breach
+  method: GET
+  path: /breach/catalog/{id}
+  server: https://api.spycloud.io/sp-v2
+- name: get_breachdatapasswords_password
+  description: get_breachdatapasswords{password}
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#get_breachdatapasswords{password}
+  method: GET
+  path: //breach/data/passwords/{password}
+  server: https://api.spycloud.io/sp-v2
+- name: get_records_by_social_security_number
+  description: Get records by Social Security Number
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#get-records-by-social-security-number
+  method: GET
+  path: /breach/data/social-security-numbers/{social_security_number}
+  server: https://api.spycloud.io/sp-v2
+- name: dp_get_records_by_phone_number
+  description: Get records by phone number
+  source_operation: openapi/spycloud-data-partnership-openapi.yml#dp-get-records-by-phone-number
+  method: GET
+  path: /breach/data/phone-numbers/{phone_number}
+  server: https://api.spycloud.io/sp-v2
+- name: eap_get_records_by_domain
+  description: Get records by domain
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-domain
+  method: GET
+  path: /breach/data/domains/{domain}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_by_email_address
+  description: Get records by email address
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-email-address
+  method: GET
+  path: /breach/data/emails/{email}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_by_ip_address
+  description: Get records by IP address
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-ip-address
+  method: GET
+  path: /breach/data/ips/{ip}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_by_password
+  description: Get records by password
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-password
+  method: GET
+  path: /breach/data/passwords/{password}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_by_username
+  description: Get records by username
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-username
+  method: GET
+  path: /breach/data/usernames/{username}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_all_records_in_watchlist
+  description: Get all records in watchlist
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records-in-watchlist
+  method: GET
+  path: /breach/data/watchlist
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_list_all_breach_metadata
+  description: List all breach metadata
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-list-all-breach-metadata
+  method: GET
+  path: /breach/catalog
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_metadata_for_a_breach
+  description: Get metadata for a breach
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-metadata-for-a-breach
+  method: GET
+  path: /breach/catalog/{id}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_list_all_identifiers
+  description: List all identifiers
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-list-all-identifiers
+  method: GET
+  path: /watchlist/identifiers
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_an_identifier
+  description: Get an identifier
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-an-identifier
+  method: GET
+  path: /watchlist/{identifier}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_create_an_identifier
+  description: Create an identifier
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-create-an-identifier
+  method: POST
+  path: /watchlist/create
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_delete_an_identifier
+  description: Delete an identifier
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-delete-an-identifier
+  method: DELETE
+  path: /watchlist/{identifier}/delete
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_verify_an_identifier
+  description: Verify an identifier
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-verify-an-identifier
+  method: GET
+  path: /watchlist/{identifier}/verify
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_list_all_compass_devices
+  description: List all devices
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-list-all-compass-devices
+  method: GET
+  path: /compass/devices
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_for_a_device
+  description: Get records for a device
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-for-a-device
+  method: GET
+  path: /compass/data/devices/{infected_machine_id}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_list_all_applications
+  description: List all applications
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-list-all-applications
+  method: GET
+  path: /compass/applications
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_records_for_an_application
+  description: Get records for an application
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-for-an-application
+  method: GET
+  path: /compass/data/applications/{target_application}
+  server: https://api.spycloud.io/enterprise-v2
+- name: eap_get_all_records
+  description: Get all records
+  source_operation: openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records
+  method: GET
+  path: /compass/data
+  server: https://api.spycloud.io/enterprise-v2
+- name: idl_get_records_by_email
+  description: Get records by email
+  source_operation: openapi/spycloud-idlink-openapi.yml#idl-get-records-by-email
+  method: GET
+  path: /query/emails/{email}
+  server: https://api.spycloud.io/idl-v2
+- name: idl_get_records_by_phone_number
+  description: Get records by phone number
+  source_operation: openapi/spycloud-idlink-openapi.yml#idl-get-records-by-phone-number
+  method: GET
+  path: /query/phone-numbers/{phone}
+  server: https://api.spycloud.io/idl-v2
+- name: idl_get_records_by_username
+  description: Get records by username
+  source_operation: openapi/spycloud-idlink-openapi.yml#idl-get-records-by-username
+  method: GET
+  path: /query/usernames/{username}
+  server: https://api.spycloud.io/idl-v2
+- name: inv_get_records_by_domain
+  description: Get records by domain
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-domain
+  method: GET
+  path: /breach/data/domains/{domain}
+  server: https://api.spycloud.io/investigations-v2
+- name: get_records_by_email_address
+  description: Get records by email address
+  source_operation: openapi/spycloud-investigations-openapi.yml#get-records-by-email-address
+  method: GET
+  path: /breach/data/emails/{email}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_ip_address
+  description: Get records by IP address
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-ip-address
+  method: GET
+  path: /breach/data/ips/{ip}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_infected_machine_id
+  description: Get records by Infected Machine ID
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-infected-machine-id
+  method: GET
+  path: /breach/data/infected-machine-ids/{infected_machine_id}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_log_id
+  description: Get records by Log ID
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-log-id
+  method: GET
+  path: /breach/data/log-ids/{log_id}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_password
+  description: Get records by password
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-password
+  method: GET
+  path: /breach/data/passwords/{password}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_username
+  description: Get records by username
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-username
+  method: GET
+  path: /breach/data/usernames/{username}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_email_username
+  description: Get records by email username
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-email-username
+  method: GET
+  path: /breach/data/email-usernames/{email_username}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_phone_number
+  description: Get records by phone number
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-phone-number
+  method: GET
+  path: /breach/data/phone-numbers/{phone_number}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_social_handle
+  description: Get records by social handle
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-social-handle
+  method: GET
+  path: /breach/data/social-handles/{social_handle}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_credit_card_number
+  description: Get records by credit card number
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-credit-card-number
+  method: GET
+  path: /breach/data/cc-numbers/{cc_number}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_drivers_license
+  description: Get records by drivers license
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-drivers-license
+  method: GET
+  path: /breach/data/drivers-licenses/{drivers_license}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_national_id
+  description: Get records by National ID
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-national-id
+  method: GET
+  path: /breach/data/national-ids/{national_id}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_passport_number
+  description: Get records by passport number
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-passport-number
+  method: GET
+  path: /breach/data/passport-numbers/{passport_number}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_social_security_number
+  description: Get records by Social Security Number
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-social-security-number
+  method: GET
+  path: /breach/data/social-security-numbers/{social_security_number}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_list_all_breach_metadata
+  description: List all breach metadata
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-list-all-breach-metadata
+  method: GET
+  path: /breach/catalog
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_metadata_for_a_breach
+  description: Get metadata for a breach
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-metadata-for-a-breach
+  method: GET
+  path: /breach/catalog/{id}
+  server: https://api.spycloud.io/investigations-v2
+- name: inv_get_records_by_bank_number
+  description: Get records by bank number
+  source_operation: openapi/spycloud-investigations-openapi.yml#inv-get-records-by-bank-number
+  method: GET
+  path: /breach/data/bank-numbers/{bank_number}
+  server: https://api.spycloud.io/investigations-v2
+- name: nist_check_password_hash
+  description: Check password hash
+  source_operation: openapi/spycloud-nist-password-openapi.yml#nist-check-password-hash
+  method: GET
+  path: /check/hashes/{hash}
+  server: https://api.spycloud.io/nist-password-v2
+- name: get_stats_for_a_domain
+  description: Get stats for a domain
+  source_operation: openapi/spycloud-prospecting-openapi.yml#get-stats-for-a-domain
+  method: GET
+  path: /stats/domains/{domain}
+  server: https://api.spycloud.io/prospecting-v2
+- name: prospecting_get_stats_for_an_email
+  description: Get stats for an email
+  source_operation: openapi/spycloud-prospecting-openapi.yml#prospecting-get-stats-for-an-email
+  method: GET
+  path: /stats/emails/{email}
+  server: https://api.spycloud.io/prospecting-v2
+- name: sip_get_cookies_for_domain
+  description: Get cookies for domain
+  source_operation: openapi/spycloud-session-identity-protection-openapi.yml#sip-get-cookies-for-domain
+  method: GET
+  path: /breach/data/cookie-domains/{cookie_domain}
+  server: https://api.spycloud.io/sip-v1
+- name: sip_list_all_breach_metadata
+  description: List all breach metadata
+  source_operation: openapi/spycloud-session-identity-protection-openapi.yml#sip-list-all-breach-metadata
+  method: GET
+  path: /breach/catalog
+  server: https://api.spycloud.io/sip-v1
+- name: sip_get_metadata_for_a_breach
+  description: Get metadata for a breach
+  source_operation: openapi/spycloud-session-identity-protection-openapi.yml#sip-get-metadata-for-a-breach
+  method: GET
+  path: /breach/catalog/{id}
+  server: https://api.spycloud.io/sip-v1

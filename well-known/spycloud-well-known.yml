@@ -1,0 +1,82 @@
+generated: '2026-08-05'
+method: searched
+source: live /.well-known/ probes of spycloud.com, docs.spycloud.com, portal.spycloud.com, api.spycloud.io
+hosts:
+- host: https://spycloud.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: spycloud-security.txt
+    standard: RFC 9116
+  - path: /llms.txt
+    status: 200
+    file: ../llms/spycloud-llms.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://docs.spycloud.com
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    file: spycloud-api-catalog.json
+    standard: RFC 9727 (linkset, RFC 9264)
+    note: Served by the ReadMe hub. Points at https://docs.spycloud.com/public-sc/reference as service-doc.
+  - path: /.well-known/security.txt
+    status: 200
+    rejected: true
+    reason: HTML SPA catch-all, not RFC 9116 text
+  - path: /.well-known/agent-card.json
+    status: 200
+    rejected: true
+    reason: HTML SPA catch-all, not an AgentCard JSON object
+  - path: /.well-known/agent.json
+    status: 200
+    rejected: true
+    reason: HTML SPA catch-all, not an AgentCard JSON object
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://portal.spycloud.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.spycloud.io
+  note: API gateway returns 403 {"message":"Forbidden"} for every unauthenticated path including /.well-known/*;
+    authenticated paths return 401 Unauthorized.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /openapi.json
+    status: 403
+  - path: /swagger.json
+    status: 403
+  - path: /sp-v2/breach/catalog
+    status: 401

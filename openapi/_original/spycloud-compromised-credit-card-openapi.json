@@ -1,0 +1,229 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "compromised-credit-card-api",
+    "version": "1.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.spycloud.io/fd-v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/data/cc/bins/{bin}": {
+      "get": {
+        "summary": "Get credit cards by BIN",
+        "description": "",
+        "operationId": "fd-get-credit-cards-by-bin",
+        "parameters": [
+          {
+            "name": "bin",
+            "in": "path",
+            "description": "One or up to 10 comma delimited 6 character Credit card, Debit card, Gift card, or Loyalty card BINs to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Optional. Used for pagination. Pass the cursor value returned from a previous response to retrieve the next page.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "Optional. Override the salt key tied to your API key when hashing is enabled. This is typically not required unless you are instructed to provide a specific salt.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "A successful response returns JSON-formatted BIN-level compromise data, including the total number of exposures, breach references, and associated metadata."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "text",
+              "code": "GET /fd-v1/data/cc/bins?since=2024-01-01&until=2024-01-31\nHost: api.spycloud.io\nAuthorization: Bearer YOUR_API_KEY"
+            }
+          ],
+          "samples-languages": [
+            "text"
+          ]
+        }
+      }
+    },
+    "/data/cc/bins": {
+      "get": {
+        "summary": "List credit cards",
+        "description": "",
+        "operationId": "list-credit-cards",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Optional. Used for pagination. Pass the cursor value returned from a previous response to retrieve the next page.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "Optional. Override the salt key tied to your API key when hashing is enabled. This is typically not required unless you are instructed to provide a specific salt.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": ""
+                  },
+                  "New Example": {
+                    "summary": "New Example",
+                    "value": ""
+                  },
+                  "CC Plaintext Enabled": {
+                    "summary": "CC Plaintext Enabled",
+                    "value": {
+                      "results": [
+                        {
+                          "source_id": 69187,
+                          "email": "email@example.com",
+                          "infected_path": "C:\\RECYCLER\\S-1-2-18\\USBtool.exe",
+                          "cc_number": "597e607bc83f8d59506c2698d05bb5c0f9a66702",
+                          "user_hostname": "DESKTOP-PC",
+                          "user_sys_registered_owner": "Online",
+                          "ip_addresses": [
+                            "41.235.136.175"
+                          ],
+                          "log_id": "97943c24aa9e94e65d2cb52b7dedfb5b021b435102e3ffbfee238ae7b4de20b8",
+                          "cc_bin": "123456",
+                          "cc_last_four": "5231",
+                          "spycloud_publish_date": "2024-12-31T00:00:00Z",
+                          "document_id": "7650e39a-c887-4596-a0b5-53d9ac847240",
+                          "cc_number_plaintext": "1234565777244321"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "text",
+              "code": "GET /fd-v1/data/cc/bins?since=2024-01-01&until=2024-01-31\nHost: api.spycloud.io\nAuthorization: Bearer YOUR_API_KEY\n"
+            }
+          ],
+          "samples-languages": [
+            "text"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": false
+  },
+  "x-readme-fauxas": true
+}

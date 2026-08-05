@@ -1,0 +1,721 @@
+generated: '2026-08-05'
+method: generated
+source: openapi/spycloud-compromised-credit-card-openapi.yml, openapi/spycloud-consumer-ato-prevention-openapi.yml,
+  openapi/spycloud-data-partnership-openapi.yml, openapi/spycloud-enterprise-ato-prevention-openapi.yml,
+  openapi/spycloud-idlink-openapi.yml, openapi/spycloud-investigations-openapi.yml, openapi/spycloud-nist-password-openapi.yml,
+  openapi/spycloud-prospecting-openapi.yml, openapi/spycloud-session-identity-protection-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 69
+  by_action_class:
+    connected: 67
+    acting: 2
+  by_consequence:
+    read: 67
+    write: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /data/cc/bins/{bin}
+  method: get
+  operationId: fd-get-credit-cards-by-bin
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/cc/bins
+  method: get
+  operationId: list-credit-cards
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/emails/{email}
+  method: get
+  operationId: cap-get-records-by-email-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/ips/{ip}
+  method: get
+  operationId: cap-get-records-by-ip-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/usernames/{username}
+  method: get
+  operationId: get-records-by-usernames
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/
+  method: get
+  operationId: cap-list-all-breach-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/{id}
+  method: get
+  operationId: get-metadata-for-a-breach
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /check/hashes/credentials/{hash_prefix}
+  method: get
+  operationId: cap-zero-knowledge
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/phone-numbers/{phone_number}
+  method: get
+  operationId: cap-get-records-by-phone-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/domains/{domain}
+  method: get
+  operationId: dp-get-records-by-domain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/emails/{email}
+  method: get
+  operationId: dp-records-by-email
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/ips/{ip}
+  method: get
+  operationId: dp-get-records-by-ip-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/health-insurance-ids/{health_insurance_id}
+  method: get
+  operationId: dp-get-records-by-health-insurance-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/usernames/{username}
+  method: get
+  operationId: dp-get-records-by-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/bank-numbers/{bank_number}
+  method: get
+  operationId: dp-get-records-by-bank-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/cc-numbers/{cc_number}
+  method: get
+  operationId: dp-get-records-by-credit-card-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/drivers-licenses/{drivers_license}
+  method: get
+  operationId: dp-get-records-by-drivers-license
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/national-ids/{national_id}
+  method: get
+  operationId: get-records-by-national-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/passport-numbers/{passport_number}
+  method: get
+  operationId: dp-get-records-by-passport-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/
+  method: get
+  operationId: dp-list-all-breach-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/{id}
+  method: get
+  operationId: dp-get-metadata-for-a-breach
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: //breach/data/passwords/{password}
+  method: get
+  operationId: get_breachdatapasswords{password}
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/social-security-numbers/{social_security_number}
+  method: get
+  operationId: get-records-by-social-security-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/phone-numbers/{phone_number}
+  method: get
+  operationId: dp-get-records-by-phone-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/domains/{domain}
+  method: get
+  operationId: eap-get-records-by-domain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/emails/{email}
+  method: get
+  operationId: eap-get-records-by-email-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/ips/{ip}
+  method: get
+  operationId: eap-get-records-by-ip-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/passwords/{password}
+  method: get
+  operationId: eap-get-records-by-password
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/usernames/{username}
+  method: get
+  operationId: eap-get-records-by-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/watchlist
+  method: get
+  operationId: eap-get-all-records-in-watchlist
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog
+  method: get
+  operationId: eap-list-all-breach-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/{id}
+  method: get
+  operationId: eap-get-metadata-for-a-breach
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /watchlist/identifiers
+  method: get
+  operationId: eap-list-all-identifiers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /watchlist/{identifier}
+  method: get
+  operationId: eap-get-an-identifier
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /watchlist/create
+  method: post
+  operationId: eap-create-an-identifier
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /watchlist/{identifier}/delete
+  method: delete
+  operationId: eap-delete-an-identifier
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /watchlist/{identifier}/verify
+  method: get
+  operationId: eap-verify-an-identifier
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compass/devices
+  method: get
+  operationId: eap-list-all-compass-devices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compass/data/devices/{infected_machine_id}
+  method: get
+  operationId: eap-get-records-for-a-device
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compass/applications
+  method: get
+  operationId: eap-list-all-applications
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compass/data/applications/{target_application}
+  method: get
+  operationId: eap-get-records-for-an-application
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compass/data
+  method: get
+  operationId: eap-get-all-records
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /query/emails/{email}
+  method: get
+  operationId: idl-get-records-by-email
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /query/phone-numbers/{phone}
+  method: get
+  operationId: idl-get-records-by-phone-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /query/usernames/{username}
+  method: get
+  operationId: idl-get-records-by-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/domains/{domain}
+  method: get
+  operationId: inv-get-records-by-domain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/emails/{email}
+  method: get
+  operationId: get-records-by-email-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/ips/{ip}
+  method: get
+  operationId: inv-get-records-by-ip-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/infected-machine-ids/{infected_machine_id}
+  method: get
+  operationId: inv-get-records-by-infected-machine-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/log-ids/{log_id}
+  method: get
+  operationId: inv-get-records-by-log-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/passwords/{password}
+  method: get
+  operationId: inv-get-records-by-password
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/usernames/{username}
+  method: get
+  operationId: inv-get-records-by-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/email-usernames/{email_username}
+  method: get
+  operationId: inv-get-records-by-email-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/phone-numbers/{phone_number}
+  method: get
+  operationId: inv-get-records-by-phone-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/social-handles/{social_handle}
+  method: get
+  operationId: inv-get-records-by-social-handle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/cc-numbers/{cc_number}
+  method: get
+  operationId: inv-get-records-by-credit-card-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/drivers-licenses/{drivers_license}
+  method: get
+  operationId: inv-get-records-by-drivers-license
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/national-ids/{national_id}
+  method: get
+  operationId: inv-get-records-by-national-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/passport-numbers/{passport_number}
+  method: get
+  operationId: inv-get-records-by-passport-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/social-security-numbers/{social_security_number}
+  method: get
+  operationId: inv-get-records-by-social-security-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog
+  method: get
+  operationId: inv-list-all-breach-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/{id}
+  method: get
+  operationId: inv-get-metadata-for-a-breach
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/bank-numbers/{bank_number}
+  method: get
+  operationId: inv-get-records-by-bank-number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /check/hashes/{hash}
+  method: get
+  operationId: nist-check-password-hash
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/domains/{domain}
+  method: get
+  operationId: get-stats-for-a-domain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/emails/{email}
+  method: get
+  operationId: prospecting-get-stats-for-an-email
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/data/cookie-domains/{cookie_domain}
+  method: get
+  operationId: sip-get-cookies-for-domain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog
+  method: get
+  operationId: sip-list-all-breach-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breach/catalog/{id}
+  method: get
+  operationId: sip-get-metadata-for-a-breach
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

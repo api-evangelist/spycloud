@@ -1,0 +1,47 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/page/release-notes-1
+scheme: dated release notes (platform-wide, not per-API semver)
+note: SpyCloud publishes dated platform release notes covering console, product and API changes together. There
+  is no per-API version changelog.
+window: 2026-02-18 through 2026-07-22
+entries:
+- date: '2026-07-22'
+  highlights:
+  - Session Status and Cookie Detail columns — tags showing whether exposed sessions remain active
+  - Identity Guardian partial remediation — retry for failed tenants, notification routing to up to 10 recipients
+  - Source Type filter on Records pages
+  - SCIM self-service setup for enterprise admins
+  breaking: false
+- date: '2026-07-10'
+  highlights:
+  - Research Agent query removal (Pro) — delete specific searches and associated records from an investigation
+  breaking: false
+- date: '2026-06-24'
+  highlights:
+  - Research Agent (Pro) — run investigations by describing the target in plain English
+  breaking: false
+- date: '2026-04-16'
+  highlights:
+  - Endpoint Graph View visualising device relationships
+  - Shareable, URL-persistent filters
+  - Devices tab retry logic and failure-state messaging
+  - Swagger/OpenAPI documentation generation
+  breaking: false
+- date: '2026-03-31'
+  highlights:
+  - Combolist backlog ingestion — deduplicated credential pairs processed through June 2026
+  breaking: false
+- date: '2026-03-18'
+  highlights:
+  - Shallow links for breach alerts
+  - Username now a default Records column; Phish Time optional
+  - DataGrid state persistence across sessions
+  - Export terminology changed from "Email" to "Domains"
+  breaking: false
+- date: '2026-02-18'
+  highlights:
+  - Save and resume investigations with autosave of searches, pivots and graph settings
+  - API key management in the console with customizable columns
+  - Configurable breach-alert and export notifications
+  breaking: false

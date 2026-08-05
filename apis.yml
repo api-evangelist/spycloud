@@ -1,23 +1,208 @@
 aid: spycloud
 name: SpyCloud
-description: 'SpyCloud is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'SpyCloud is an Austin, Texas based identity threat protection company that operates one of the largest
+  repositories of recaptured darknet data — breach records, infostealer malware logs, phishing captures and combolists
+  — and exposes it programmatically through a family of high-volume REST APIs. Security, fraud, identity and investigations
+  teams query recaptured credentials, session cookies, exposed PII and infected-device telemetry to prevent account
+  takeover, ransomware, session hijacking and online fraud. The public API surface spans nine separately-licensed
+  products: Enterprise (Employee) ATO Prevention, Consumer ATO Prevention, Cybercrime Investigations, Data Partnership,
+  IDLink identity correlation, Compromised Credit Card, Prospecting, NIST Password check, and Session Identity Protection.
+  All are REST/JSON, authenticated with an x-api-key header, IP allow-listed, cursor-paginated at 1,000 records
+  per page, and backed by a 99.9% uptime SLA.'
 url: https://raw.githubusercontent.com/api-evangelist/spycloud/refs/heads/main/apis.yml
+image: https://spycloud.com/wp-content/uploads/2025/04/bg-img-dotted-lines-1920x700-1-1.png
+specificationVersion: '0.20'
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
-- Company
-apis: []
+- Cybersecurity
+- Threat Intelligence
+- Identity
+- Fraud Prevention
+- Account Takeover
+- Dark Web
+- Breach Data
+- Malware
+- Authentication
+- Security
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: SpyCloud Enterprise ATO Prevention API
+  description: Employee Account Takeover (EAP) Prevention API — a programmatic interface into your watchlist items
+    found in SpyCloud's recaptured breach and malware data. Query breach records by domain, email, IP, password
+    or username; manage watchlist identifiers; and pull Compass malware-infection telemetry for devices and targeted
+    applications.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-enterprise-ato-prevention-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-enterprise-ato-prevention-overlay.yaml
+- name: SpyCloud Consumer ATO Prevention API
+  description: Consumer Account Takeover Prevention API — real-time login-risk and account-creation checks against
+    recaptured consumer breach records by email, username, phone number or IP, plus a k-anonymity zero-knowledge
+    credential hash-prefix check.
+  humanURL: https://docs.spycloud.com/public-sc/reference/consumer-ato-guidelines
+  baseURL: https://api.spycloud.io/sp-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-consumer-ato-prevention-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-consumer-ato-prevention-overlay.yaml
+- name: SpyCloud Cybercrime Investigations API
+  description: Investigations API — the broadest query surface across SpyCloud's recaptured data, letting analysts
+    pivot across emails, usernames, passwords, domains, IPs, phone numbers, social handles, infected machine IDs,
+    log IDs and identity documents (passport, driver's licence, national ID, SSN, bank and card numbers) to identify
+    and profile threat actors.
+  humanURL: https://docs.spycloud.com/public-sc/reference/investigations-api-guidelines
+  baseURL: https://api.spycloud.io/investigations-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-investigations-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-investigations-overlay.yaml
+- name: SpyCloud Data Partnership API
+  description: Data Partnership API — bulk partner access to recaptured breach records keyed on a wide set of identifiers
+    including domain, email, username, IP, phone, passwords, and hashed identity documents (health insurance ID,
+    driver's licence, national ID, passport, SSN, bank and credit card numbers).
+  humanURL: https://docs.spycloud.com/public-sc/reference/data-partner-api-guidelines
+  baseURL: https://api.spycloud.io/sp-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-data-partnership-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-data-partnership-overlay.yaml
+- name: SpyCloud IDLink API
+  description: IDLink automated identity analytics — given an email, phone number or username, traverses SpyCloud's
+    recaptured identity graph up to four pivot levels deep to return the correlated identity, supporting synthetic-identity
+    detection and holistic exposure analysis. Returns JSON or json-graph-spec.
+  humanURL: https://docs.spycloud.com/public-sc/reference/idlink-api-guidelines
+  baseURL: https://api.spycloud.io/idl-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-idlink-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-idlink-overlay.yaml
+- name: SpyCloud Compromised Credit Card API
+  description: Fraud-detection API returning compromised credit, debit, gift and loyalty card records recaptured
+    from breaches and malware logs, queried by six-character BIN.
+  humanURL: https://docs.spycloud.com/public-sc/reference/compromised-cc-api-guidelines
+  baseURL: https://api.spycloud.io/fd-v1
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-compromised-credit-card-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-compromised-credit-card-overlay.yaml
+- name: SpyCloud Prospecting API
+  description: Exposure statistics API returning aggregate counts of recaptured breach and malware exposures for
+    a domain or an email address, over a configurable lookback window, without returning the underlying records.
+  humanURL: https://docs.spycloud.com/public-sc/reference/prospecting-api-guidelines
+  baseURL: https://api.spycloud.io/prospecting-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-prospecting-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-prospecting-overlay.yaml
+- name: SpyCloud NIST Password API
+  description: NIST SP 800-63B aligned compromised-password screening. Submit a five-hex-digit prefix of an NTLM,
+    SHA-1, SHA-256 or SHA-512 password hash and receive matching hashes, so passwords can be validated at account
+    creation or reset without transmitting the password itself.
+  humanURL: https://docs.spycloud.com/public-sc/reference/nist-api-guidelines
+  baseURL: https://api.spycloud.io/nist-password-v2
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-nist-password-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-nist-password-overlay.yaml
+- name: SpyCloud Session Identity Protection API
+  description: Session Identity Protection (SIP) API — returns stolen session cookies recaptured from infostealer
+    malware for a given cookie domain, with cookie-name and expiration filtering, so session-hijacking exposure
+    can be detected and live sessions invalidated.
+  humanURL: https://docs.spycloud.com/public-sc/reference/sip-api-guidelines
+  baseURL: https://api.spycloud.io/sip-v1
+  properties:
+  - type: OpenAPI
+    url: openapi/spycloud-session-identity-protection-openapi.yml
+  - type: Overlay
+    url: overlays/spycloud-session-identity-protection-overlay.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/spycloud-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/spycloud-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/spycloud-domain-security.yml
+- type: Authentication
+  url: authentication/spycloud-authentication.yml
 - type: Website
-  url: https://forgeglobal.com/spycloud_stock/
+  url: https://spycloud.com/
+- type: DeveloperPortal
+  url: https://docs.spycloud.com/public-sc
+- type: Documentation
+  url: https://docs.spycloud.com/public-sc/docs
+- type: APIReference
+  url: https://docs.spycloud.com/public-sc/reference
+- type: GettingStarted
+  url: https://docs.spycloud.com/public-sc/docs/api-guidelines
+- type: Support
+  url: https://spycloud.com/support/
+- type: Blog
+  url: https://spycloud.com/blog/
+- type: Pricing
+  url: https://spycloud.com/pricing/
+- type: SignUp
+  url: https://spycloud.com/request-a-demo/
+- type: Login
+  url: https://portal.spycloud.com/
+- type: TermsOfService
+  url: https://spycloud.com/legal/terms-of-use/
+- type: PrivacyPolicy
+  url: https://spycloud.com/legal/privacy-policy/
+- type: StatusPage
+  url: https://status.spycloud.com/
+- type: ChangeLog
+  url: https://docs.spycloud.com/public-sc/page/release-notes-1
+- type: Compliance
+  url: https://spycloud.com/legal/governance-risk-and-compliance/
+- type: TrustCenter
+  url: https://app.vanta.com/spycloud.com/trust/itvhddyqxnnf6gi6aatcx
+- type: Security
+  url: https://spycloud.com/.well-known/security.txt
+- type: SecurityTxt
+  url: well-known/spycloud-security.txt
+- type: WellKnown
+  url: well-known/spycloud-well-known.yml
+- type: APICatalog
+  url: well-known/spycloud-api-catalog.json
+- type: LLMsTxt
+  url: llms/spycloud-llms.txt
+- type: Conventions
+  url: conventions/spycloud-conventions.yml
+- type: ErrorCatalog
+  url: errors/spycloud-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/spycloud-lifecycle.yml
+- type: ChangeLog
+  url: changelog/spycloud-changelog.yml
+- type: Conformance
+  url: conformance/spycloud-conformance.yml
+- type: RateLimits
+  url: rate-limits/spycloud-rate-limits.yml
+- type: DataModel
+  url: data-model/spycloud-data-model.yml
+- type: TrustCenter
+  url: security/spycloud-trust-center.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-05'
+  status: enriched
+  artifacts_added: 54
+  pass: local-v1

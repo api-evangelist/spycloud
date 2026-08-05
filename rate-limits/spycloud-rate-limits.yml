@@ -1,0 +1,41 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/docs/api-guidelines
+model: Per-API-key rate limit plus a monthly request quota, both contract-defined.
+published_numeric_limits: false
+note: SpyCloud documents the 429 behaviour and retry strategy but does not publish numeric per-second/per-minute
+  limits or quota values; those are set per contract and raised by contacting support.
+rate_limits:
+- name: per-key rate limit
+  limit_count: null
+  interval: null
+  signal: HTTP 429 "Too many requests"
+  note: Numeric value is contract-defined and not published.
+- name: monthly request quota
+  limit_count: null
+  interval: month
+  signal: HTTP 429 "Limit exceeded"
+  note: A "Too many requests" error takes precedence over quota exhaustion when both apply.
+response_headers: []
+retry_policy:
+  documented: true
+  default_wait_seconds: 3
+  strategies:
+  - name: exponential backoff
+    sequence_seconds:
+    - 3
+    - 9
+    then: log the error and fail open
+  - name: sliding retry
+    sequence_seconds:
+    - 3
+    - 4
+    then: log the error and fail open
+result_ceilings:
+- limit: 1000 records per page
+  detail: Fixed, not customizable; use cursor pagination beyond this.
+- limit: 2000 potential matches per query
+  detail: A query resolving to more than 2,000 potential matches returns HTTP 422; narrow the selector.
+  source: https://docs.spycloud.com/public-sc/reference/response-codes
+- limit: 10 selectors per request
+  detail: Comma-delimited batch lookups are capped at 10 values.

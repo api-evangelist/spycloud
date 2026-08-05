@@ -1,0 +1,5 @@
+Contact: mailto:security@spycloud.com
+Encryption: https://spycloud.com/.well-known/spycloud-security.pub.txt
+Preferred-Languages: en
+Canonical: https://spycloud.com/.well-known/security.txt
+Hiring: https://spycloud.com/company/careers/

@@ -1,0 +1,2261 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "enterprise-ato-prevention-api",
+    "version": "1.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.spycloud.io/enterprise-v2"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/breach/data/domains/{domain}": {
+      "get": {
+        "summary": "Get records by domain",
+        "description": "",
+        "operationId": "eap-get-records-by-domain",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain or Subdomain name to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "This parameter lets you filter results by several types. The allowed values are 'corporate' for corporate records, and 'infected' for infected user records, email_domain to just match against email domains, and target_domain to just match against target domains or subdomains. If no value has been provided the API function will, by default, return all record types.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "corporate",
+                "infected",
+                "email_domain",
+                "target_domain"
+              ]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/data/emails/{email}": {
+      "get": {
+        "summary": "Get records by email address",
+        "description": "",
+        "operationId": "eap-get-records-by-email-address",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email address to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{Request succeeded}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/data/ips/{ip}": {
+      "get": {
+        "summary": "Get records by IP address",
+        "description": "",
+        "operationId": "eap-get-records-by-ip-address",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IP address or network CIDR notation to search for. For CIDR notation, use an underscore instead of a slash.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{Request succeeded}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/data/passwords/{password}": {
+      "get": {
+        "summary": "Get records by password",
+        "description": "",
+        "operationId": "eap-get-records-by-password",
+        "parameters": [
+          {
+            "name": "password",
+            "in": "path",
+            "description": "Password you wish to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "OK": {
+                    "value": {
+                      "status": "ok",
+                      "data": {
+                        "total_records": 1,
+                        "records": [
+                          {
+                            "password": "P@ssw0rd123",
+                            "sha256_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+                            "exposure_count": 42,
+                            "first_seen": "2019-06-15T12:34:56Z",
+                            "last_seen": "2025-09-01T12:34:56Z",
+                            "source_id": "breach123",
+                            "spycloud_publish_date": "2025-09-01T12:34:56Z"
+                          }
+                        ]
+                      }
+                    },
+                    "summary": "OK"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Bad Request": {
+                    "value": "{}",
+                    "summary": "Bad Request"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/data/usernames/{username}": {
+      "get": {
+        "summary": "Get records by username",
+        "description": "",
+        "operationId": "eap-get-records-by-username",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "Username you wish to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date).  Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "status": "ok",
+                      "data": {
+                        "total_records": 42,
+                        "records": [
+                          {
+                            "email": "user@example.com",
+                            "spycloud_publish_date": "2025-09-01T12:34:56Z",
+                            "source_id": "breach123"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{{\n  \"error\": \"BAD_REQUEST\",\n  \"message\": \"Invalid domain parameter. Expected a valid FQDN.\",\n  \"trace_id\": \"req_12345\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  }
+                },
+                "examples": {
+                  "Rate Limit Exceeded": {
+                    "summary": "Rate Limit Exceeded",
+                    "value": {
+                      "error": "TOO_MANY_REQUESTS",
+                      "message": "Rate limit exceeded. Try again later.",
+                      "trace_id": "req_13579"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "error": "INTERNAL_SERVER_ERROR",
+                      "message": "Unexpected server error. Please retry later.",
+                      "trace_id": "req_54321"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Gateway Timeout": {
+                    "summary": "Gateway Timeout",
+                    "value": {
+                      "error": "GATEWAY_TIMEOUT",
+                      "message": "Request exceeded 30s timeout",
+                      "trace_id": "req_98765"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/data/watchlist": {
+      "get": {
+        "summary": "Get all records in watchlist",
+        "description": "",
+        "operationId": "eap-get-all-records-in-watchlist",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "This parameter lets you filter results by type. The allowed values are corporate (corporate records), infected (infected user records from botnet data), email_domain (records associated with a specific email domain), and target_domain (records associated with a monitored/target domain). If no value is provided, the API will return all record types by default.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "corporate",
+                "infected",
+                "email_domain",
+                "target_domain"
+              ]
+            }
+          },
+          {
+            "name": "watchlist_type",
+            "in": "query",
+            "description": "This parameters lets you filter results for only emails or only domains on your watchlist. The allowed values are: ['email', 'domain', 'subdomain', 'ip']. If no value has been provided, the API will return all watchlist types.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "domain",
+                "email",
+                "ip",
+                "subdomain"
+              ]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "since_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until_modification_date",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "default": "ok",
+                      "description": "",
+                      "enum": [
+                        "[ok]"
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Description: Endpoint-specific payload",
+                      "properties": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier ID assigned by SpyCloud"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "[created]"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "No Response Body": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Successfully deleted the identifier."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "default": "[BAD_REQUEST]",
+                      "description": "Our validation of your path/parameter query didn't meet our expectations",
+                      "enum": [
+                        "BAD_REQUEST"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Invalid request"
+                    },
+                    "trace_id": {
+                      "type": "string",
+                      "default": "req_example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/catalog": {
+      "get": {
+        "summary": "List all breach metadata",
+        "description": "",
+        "operationId": "eap-list-all-breach-metadata",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Query value to search the breach catalog for.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/breach/catalog/{id}": {
+      "get": {
+        "summary": "Get metadata for a breach",
+        "description": "",
+        "operationId": "eap-get-metadata-for-a-breach",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Numerical ID of the breach. Both integer and UUIDv4 ID formats are supported. You may also use a comma delimiter to request more than one breach at a time.",
+            "schema": {
+              "type": "string",
+              "description": "Integer ID, UUIDv4, or comma-delimited list."
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "property1": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/watchlist/identifiers": {
+      "get": {
+        "summary": "List all identifiers",
+        "description": "",
+        "operationId": "eap-list-all-identifiers",
+        "parameters": [
+          {
+            "name": "watchlist_type",
+            "in": "query",
+            "description": "This parameters lets you filter results for only emails or only domains on your watchlist. The allowed values are: ['email', 'domain', 'subdomain', 'ip']. If no value has been provided, the API will return all watchlist types.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "domain",
+                "ip",
+                "email",
+                "subdomain"
+              ]
+            }
+          },
+          {
+            "name": "verified",
+            "in": "query",
+            "description": "This parameter lets you filter results by verified status. The allowed values are 'yes' or 'no'. If no value has been provided, the API function will returns both verified and unverified identifiers.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "no"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/watchlist/{identifier}": {
+      "get": {
+        "summary": "Get an identifier",
+        "description": "",
+        "operationId": "eap-get-an-identifier",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "description": "The identifier to retrieve from your watchlist.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/watchlist/create": {
+      "post": {
+        "summary": "Create an identifier",
+        "description": "",
+        "operationId": "eap-create-an-identifier",
+        "parameters": [
+          {
+            "name": "content-type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "identifier": {
+                    "type": "string",
+                    "default": "example.org"
+                  },
+                  "watchlist_type": {
+                    "type": "string",
+                    "description": "The allowed values are: ['email', 'domain', 'subdomain', 'ip'].",
+                    "default": "domain"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success - Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/watchlist/{identifier}/delete": {
+      "delete": {
+        "summary": "Delete an identifier",
+        "description": "",
+        "operationId": "eap-delete-an-identifier",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "description": "The identifier to delete from your watchlist.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - No Content",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/watchlist/{identifier}/verify": {
+      "get": {
+        "summary": "Verify an identifier",
+        "description": "",
+        "operationId": "eap-verify-an-identifier",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "description": "The domain identifier on your watchlist to verify. Note - this method only works for domains.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/compass/devices": {
+      "get": {
+        "summary": "List all devices",
+        "description": "",
+        "operationId": "eap-list-all-compass-devices",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "since_infected",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the infected_time.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "until_infected",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the infected_time field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/compass/data/devices/{infected_machine_id}": {
+      "get": {
+        "summary": "Get records for a device",
+        "description": "",
+        "operationId": "eap-get-records-for-a-device",
+        "parameters": [
+          {
+            "name": "infected_machine_id",
+            "in": "path",
+            "description": "An Infected Machine ID or Log ID to search for compass breach records from a specific infected machine.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/compass/applications": {
+      "get": {
+        "summary": "List all applications",
+        "description": "",
+        "operationId": "eap-list-all-applications",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/compass/data/applications/{target_application}": {
+      "get": {
+        "summary": "Get records for an application",
+        "description": "",
+        "operationId": "eap-get-records-for-an-application",
+        "parameters": [
+          {
+            "name": "target_application",
+            "in": "path",
+            "description": "One or more comma delimited Compass target application (subdomain or domain) to search for.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "This parameter allows you to filter based on a particular breach source.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/compass/data": {
+      "get": {
+        "summary": "Get all records",
+        "description": "",
+        "operationId": "eap-get-all-records",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "query",
+            "description": "One or more comma delimited numeric severity code to filter based on the severity.",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "since_infected",
+            "in": "query",
+            "description": "This parameter allows you to define the starting point for a date range query on the infected_time field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "until_infected",
+            "in": "query",
+            "description": "This parameter allows you to define the ending point for a date range query on the infected_time field.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "This parameter will return records that are verified or unverified, meaning those that matched the watchlist or not.  By default if type is not used, both types will be returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "verified",
+                "unverified"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Token used for iterating through multiple pages of results.",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "salt",
+            "in": "query",
+            "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": false
+  },
+  "x-readme-fauxas": true
+}

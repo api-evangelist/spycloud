@@ -1,0 +1,1530 @@
+openapi: 3.1.0
+info:
+  title: investigations-api
+  version: '1.1'
+servers:
+- url: https://api.spycloud.io/investigations-v2
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: x-api-key
+security:
+- sec0: []
+paths:
+  /breach/data/domains/{domain}:
+    get:
+      summary: Get records by domain
+      description: ''
+      operationId: inv-get-records-by-domain
+      parameters:
+      - name: domain
+        in: path
+        description: Domain name to search for. You can also search for the sha1, sha256, or sha512 hash of the domain.
+        schema:
+          type: string
+        required: true
+      - name: type
+        in: query
+        description: This parameter lets you filter results by several types. The allowed values are 'corporate' for corporate
+          records, and 'infected' for infected user records, email_domain to just match against email domains, and target_domain
+          to just match against target domains or subdomains. If no value has been provided the API function will, by default,
+          return all record types.
+        schema:
+          type: string
+          enum:
+          - corporate
+          - infected
+          - email_domain
+          - target_domain
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field  in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the when an already published
+          record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/emails/{email}:
+    get:
+      summary: Get records by email address
+      description: ''
+      operationId: get-records-by-email-address
+      parameters:
+      - name: email
+        in: path
+        description: One or more comma delimited email addresses to search for. You can also search for the sha1, sha256,
+          or sha512 hash of the email.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the when an already published
+          record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/ips/{ip}:
+    get:
+      summary: Get records by IP address
+      description: ''
+      operationId: inv-get-records-by-ip-address
+      parameters:
+      - name: ip
+        in: path
+        description: IP address or network CIDR notation to search for.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modifid
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/infected-machine-ids/{infected_machine_id}:
+    get:
+      summary: Get records by Infected Machine ID
+      description: ''
+      operationId: inv-get-records-by-infected-machine-id
+      parameters:
+      - name: infected_machine_id
+        in: path
+        description: An Infected Machine ID to search for breach records.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/log-ids/{log_id}:
+    get:
+      summary: Get records by Log ID
+      description: ''
+      operationId: inv-get-records-by-log-id
+      parameters:
+      - name: log_id
+        in: path
+        description: A Log ID to search for breach records.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/passwords/{password}:
+    get:
+      summary: Get records by password
+      description: ''
+      operationId: inv-get-records-by-password
+      parameters:
+      - name: password
+        in: path
+        description: Password you wish to search for.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      - name: fuzzy
+        in: query
+        description: This parameter allows you to use fuzzy matching when searching for passwords. This means if you search
+          for password "Examplepassword12" you will also get "Examplepassword123" and "Examplepassword1234" as part of the
+          results. This must be "true" or "false". By default this is "false".
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/usernames/{username}:
+    get:
+      summary: Get records by username
+      description: ''
+      operationId: inv-get-records-by-username
+      parameters:
+      - name: username
+        in: path
+        description: Username you wish to search for.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      - name: fuzzy
+        in: query
+        description: This parameter allows you to use fuzzy matching when searching for usernames. This means if you search
+          for username "Bob12" you will also get "Bob123" and "Bob1234" as part of the results. This must be "true" or "false".
+          By default this is "false".
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    cursor: 0bc4bc0f-2801-45fd-9a23-5e80f8f1b4ec
+                    hits: 1000
+                    results:
+                    - username: brian
+                      document_id: 222a1530-a7dc-4875-b829-40893949316f
+                      source_id: 154861
+                      severity: 5
+                      spycloud_publish_date: '2026-04-27T00:00:00Z'
+                      breach_title: Unknown Phishing Kit
+                      breach_category: phished
+              schema:
+                type: object
+                properties:
+                  cursor:
+                    type: string
+                    example: 0bc4bc0f-2801-45fd-9a23-5e80f8f1b4ec
+                  hits:
+                    type: integer
+                    example: 1000
+                    default: 0
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                          example: brian
+                        document_id:
+                          type: string
+                          example: 222a1530-a7dc-4875-b829-40893949316f
+                        source_id:
+                          type: integer
+                          example: 154861
+                          default: 0
+                        severity:
+                          type: integer
+                          example: 5
+                          default: 0
+                        spycloud_publish_date:
+                          type: string
+                          example: '2026-04-27T00:00:00Z'
+                          format: date-time
+                        breach_title:
+                          type: string
+                          example: Unknown Phishing Kit
+                        breach_category:
+                          type: string
+                          example: phished
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/email-usernames/{email_username}:
+    get:
+      summary: Get records by email username
+      description: ''
+      operationId: inv-get-records-by-email-username
+      parameters:
+      - name: email_username
+        in: path
+        description: The email username you wish to search for. This is the the portion of an email before the "@" symbol.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      - name: fuzzy
+        in: query
+        description: This parameter allows you to use fuzzy matching when searching for email usernames. This means if you
+          search for username "Bob12" you will also get "Bob123" and "Bob1234" as part of the results. This must be "true"
+          or "false". By default this is "false".
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/phone-numbers/{phone_number}:
+    get:
+      summary: Get records by phone number
+      description: ''
+      operationId: inv-get-records-by-phone-number
+      parameters:
+      - name: phone_number
+        in: path
+        description: phone number you wish to search for. Must only be numerical values of length 7 to 15 characters. You
+          can also search for the sha1, sha256, or sha512 hash of the phone number.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/social-handles/{social_handle}:
+    get:
+      summary: Get records by social handle
+      description: ''
+      operationId: inv-get-records-by-social-handle
+      parameters:
+      - name: social_handle
+        in: path
+        description: Social handle you wish to search for.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the when an already published
+          record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      - name: fuzzy
+        in: query
+        description: This parameter allows you to use fuzzy matching when searching for usernames. This means if you search
+          for username "Bob12" you will also get "Bob123" and "Bob1234" as part of the results. This must be "true" or "false".
+          By default this is "false".
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/cc-numbers/{cc_number}:
+    get:
+      summary: Get records by credit card number
+      description: ''
+      operationId: inv-get-records-by-credit-card-number
+      parameters:
+      - name: cc_number
+        in: path
+        description: Hashed input of the SHA1 must be created from 12 to 19 digits without spaces, dashes, or special characters.  If
+          using SHA-256/512, you must first take a SHA-1 hash of the plaintext CC number.
+        schema:
+          type: string
+          default: SHA1 Hash
+        required: true
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          default: Token used for iterating through multiple pages of results.
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/drivers-licenses/{drivers_license}:
+    get:
+      summary: Get records by drivers license
+      description: ''
+      operationId: inv-get-records-by-drivers-license
+      parameters:
+      - name: drivers_license
+        in: path
+        description: Drivers License Number to search for.  You can also search for the sha1, sha256, or sha512 hash of the
+          Drivers License Number.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/national-ids/{national_id}:
+    get:
+      summary: Get records by National ID
+      description: ''
+      operationId: inv-get-records-by-national-id
+      parameters:
+      - name: national_id
+        in: path
+        description: Accepts plaintext or hashed input. Plaintext is case-insensitive. For hashed input, UPPERCASE the alphanumeric
+          National ID before hashing; query with SHA-1/SHA-256/SHA-512.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/passport-numbers/{passport_number}:
+    get:
+      summary: Get records by passport number
+      description: ''
+      operationId: inv-get-records-by-passport-number
+      parameters:
+      - name: passport_number
+        in: path
+        description: Passport Number to search for. You can also search for the sha1, sha256, or sha512 hash of the Passport
+          Number.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/social-security-numbers/{social_security_number}:
+    get:
+      summary: Get records by Social Security Number
+      description: ''
+      operationId: inv-get-records-by-social-security-number
+      parameters:
+      - name: social_security_number
+        in: path
+        description: Hashed input must originate from a 9-digit SSN (numbers only — no spaces, dashes, or special characters).
+          The lookup accepts either a SHA-1 of the plaintext SSN, or a SHA-256/SHA-512 computed from that SHA-1
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the when an already published
+          record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/catalog:
+    get:
+      summary: List all breach metadata
+      description: ''
+      operationId: inv-list-all-breach-metadata
+      parameters:
+      - name: query
+        in: query
+        description: Query value to search the breach catalog for.
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/catalog/{id}:
+    get:
+      summary: Get metadata for a breach
+      description: ''
+      operationId: inv-get-metadata-for-a-breach
+      parameters:
+      - name: id
+        in: path
+        description: Numerical ID of the breach. Both integer and UUIDv4 ID formats are supported. You may also use a comma
+          delimiter to request more than one breach at a time.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /breach/data/bank-numbers/{bank_number}:
+    get:
+      summary: Get records by bank number
+      description: ''
+      operationId: inv-get-records-by-bank-number
+      parameters:
+      - name: bank_number
+        in: path
+        description: Bank Number to search for.  You can also search for the sha1, sha256, or sha512 hash of the Bank Number.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date
+          field.
+        schema:
+          type: string
+          format: date
+      - name: since_modification_date
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the when an already
+          published record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: until_modification_date
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the when an already published
+          record was modified (record_modification_date).
+        schema:
+          type: string
+          format: date
+      - name: severity
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric source id to filter.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy
+          salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: false
+x-readme-fauxas: true

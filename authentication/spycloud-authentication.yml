@@ -1,0 +1,66 @@
+generated: '2026-08-05'
+method: searched
+source: openapi/spycloud-compromised-credit-card-openapi.yml, openapi/spycloud-consumer-ato-prevention-openapi.yml,
+  openapi/spycloud-data-partnership-openapi.yml, openapi/spycloud-enterprise-ato-prevention-openapi.yml, openapi/spycloud-idlink-openapi.yml,
+  openapi/spycloud-investigations-openapi.yml, openapi/spycloud-nist-password-openapi.yml, openapi/spycloud-prospecting-openapi.yml,
+  openapi/spycloud-session-identity-protection-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  header_names:
+  - x-api-key
+  - X-API-KEY
+  oauth2: false
+  note: Single-scheme API-key auth across all nine SpyCloud APIs. There is no OAuth 2.0 / OIDC surface, so no scopes/
+    artifact is emitted.
+schemes:
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/spycloud-compromised-credit-card-openapi.yml
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml
+  - openapi/spycloud-data-partnership-openapi.yml
+  - openapi/spycloud-idlink-openapi.yml
+  - openapi/spycloud-investigations-openapi.yml
+  - openapi/spycloud-nist-password-openapi.yml
+  - openapi/spycloud-prospecting-openapi.yml
+  - openapi/spycloud-session-identity-protection-openapi.yml
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  sources:
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml
+docs: https://docs.spycloud.com/public-sc/docs/api-guidelines
+key_management:
+  issued_via: https://portal.spycloud.com
+  console_page: https://docs.spycloud.com/public-sc/docs/account-settings
+  note: API keys are created and rotated in the SpyCloud Customer Portal; keys carry broad privileges and must not
+    be embedded in client-side code or repositories.
+controls:
+- control: transport
+  detail: All requests must be HTTPS. TLS 1.2 and TLS 1.3 supported; TLS 1.3 ciphers TLS_AES_128_GCM_SHA256, TLS_AES_256_GCM_SHA384,
+    TLS_CHACHA20_POLY1305_SHA256.
+- control: ip-allow-list
+  detail: Access is restricted to a customer-supplied list of IPv4 addresses or CIDRs. Calls from a non-allow-listed
+    IP return HTTP 403.
+- control: api-function-allow-list
+  detail: A key is entitled to all or a contract-defined subset of API functions. Calling an unentitled function
+    returns HTTP 403.
+- control: asset-allow-list
+  detail: Response fields can be restricted per key; non-allow-listed assets are masked with a fixed 8-asterisk
+    string. document_id, source_id and spycloud_publish_date are always returned.
+- control: asset-hashing
+  detail: Optionally returns salted hashes instead of plaintext assets. Algorithms sha1, sha224, sha256, sha384,
+    sha512; 10-24 character high-entropy salt, positioned right by default, overridable per call via the salt query
+    parameter.
+- control: cors
+  detail: CORS is supported for browser clients, though SpyCloud warns against exposing API keys in public client-side
+    code.
+failure_modes:
+- status: 403
+  meaning: Missing/invalid key, non-allow-listed source IP, or an endpoint the key is not entitled to.

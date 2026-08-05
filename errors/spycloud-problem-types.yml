@@ -1,0 +1,89 @@
+generated: '2026-08-05'
+method: searched
+source: https://docs.spycloud.com/public-sc/docs/api-guidelines + https://docs.spycloud.com/public-sc/reference/response-codes
+derived_from:
+- openapi/spycloud-compromised-credit-card-openapi.yml
+- openapi/spycloud-consumer-ato-prevention-openapi.yml
+- openapi/spycloud-data-partnership-openapi.yml
+- openapi/spycloud-enterprise-ato-prevention-openapi.yml
+- openapi/spycloud-idlink-openapi.yml
+- openapi/spycloud-investigations-openapi.yml
+- openapi/spycloud-nist-password-openapi.yml
+- openapi/spycloud-prospecting-openapi.yml
+- openapi/spycloud-session-identity-protection-openapi.yml
+format: proprietary
+rfc9457: false
+envelope:
+  content_type: application/json
+  note: JSON is returned by all API responses including errors. SpyCloud does not publish a schema for the error
+    body and does not use application/problem+json; the 4xx/5xx responses in the OpenAPI declare an empty object
+    schema.
+gap: The published OpenAPI documents only 200/400 on seven of the nine APIs even though the guidelines describe
+  403/422/429/500 across the whole surface — the Enterprise ATO spec is the only one that enumerates 403/429/500/504.
+problems:
+- status: 400
+  title: Request failed due to a missing or invalid identifier.
+  remediation: Check that the query value and query parameters are formatted correctly.
+  documented_in_spec: true
+  source_operations:
+  - openapi/spycloud-compromised-credit-card-openapi.yml#list-credit-cards
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-email-address
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-ip-address
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-get-records-by-phone-number
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-list-all-breach-metadata
+  - openapi/spycloud-consumer-ato-prevention-openapi.yml#cap-zero-knowledge
+  source_operation_count: 67
+- status: 403
+  title: You do not have the required permissions to access the resource.
+  remediation: Typically an improperly configured API key, a call from a non-allow-listed IP address, or an endpoint
+    your key is not entitled to. Contact SpyCloud support.
+  documented_in_spec: true
+  source_operations:
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records-in-watchlist
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-metadata-for-a-breach
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-domain
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-email-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-ip-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-list-all-breach-metadata
+- status: 422
+  title: Query input resolves to more than 2,000 potential matches.
+  remediation: Narrow the selector — use a full email rather than a domain, a full phone number with country code,
+    or add fields.
+  documented_in_spec: false
+- status: 429
+  title: Rate limit or monthly quota exceeded on your API key.
+  remediation: 'Back off and retry: 3s then 9s exponential, or 3s then 4s sliding; then log and fail open. Contact
+    support to raise the quota.'
+  documented_in_spec: true
+  source_operations:
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records-in-watchlist
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-metadata-for-a-breach
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-domain
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-email-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-ip-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-password
+  source_operation_count: 8
+- status: 500
+  title: An unexpected error occurred on the SpyCloud side.
+  remediation: Retry; if all attempts fail, log and report to SpyCloud support.
+  documented_in_spec: true
+  source_operations:
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records-in-watchlist
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-metadata-for-a-breach
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-domain
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-email-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-ip-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-password
+  source_operation_count: 8
+- status: 504
+  title: Gateway timeout.
+  remediation: Retry with backoff.
+  documented_in_spec: true
+  source_operations:
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-all-records-in-watchlist
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-metadata-for-a-breach
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-domain
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-email-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-ip-address
+  - openapi/spycloud-enterprise-ato-prevention-openapi.yml#eap-get-records-by-password
+  source_operation_count: 8

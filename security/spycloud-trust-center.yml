@@ -1,0 +1,27 @@
+generated: '2026-08-05'
+method: searched
+source: https://spycloud.com/legal/governance-risk-and-compliance/
+url: https://app.vanta.com/spycloud.com/trust/itvhddyqxnnf6gi6aatcx
+platform: Vanta Trust Center
+certifications:
+- SOC 2
+- ISO 27001
+contact: grc-info@spycloud.com
+programs:
+- name: Security Incident Response Plan
+  detail: Vulnerabilities categorized Low / Medium / High / Critical with associated resolution timeframes.
+  source: https://spycloud.com/legal/governance-risk-and-compliance/
+- name: Hosting
+  detail: Amazon Web Services; SOC 2 and ISO 27001 named as the hosting provider compliance frameworks.
+evidence:
+- source: https://spycloud.com/legal/governance-risk-and-compliance/
+  http_status: 200
+  keywords:
+  - soc 2
+  - iso 27001
+  - trust center
+  - security incident response
+- source: https://app.vanta.com/spycloud.com/trust/itvhddyqxnnf6gi6aatcx
+  http_status: 200
+  note: Trust center page is client-side rendered; certifications above were read from the linking GRC page, not
+    scraped from the Vanta shell.
