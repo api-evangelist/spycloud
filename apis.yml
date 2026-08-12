@@ -33,106 +33,81 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- name: SpyCloud Enterprise ATO Prevention API
-  description: Employee Account Takeover (EAP) Prevention API — a programmatic interface into your watchlist items
-    found in SpyCloud's recaptured breach and malware data. Query breach records by domain, email, IP, password
-    or username; manage watchlist identifiers; and pull Compass malware-infection telemetry for devices and targeted
-    applications.
+- aid: spycloud:spycloud-breach-api
+  name: SpyCloud Breach API
+  description: The Breach API from SpyCloud — 23 operation(s) for breach.
   humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
   baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Breach
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-enterprise-ato-prevention-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-enterprise-ato-prevention-overlay.yaml
-- name: SpyCloud Consumer ATO Prevention API
-  description: Consumer Account Takeover Prevention API — real-time login-risk and account-creation checks against
-    recaptured consumer breach records by email, username, phone number or IP, plus a k-anonymity zero-knowledge
-    credential hash-prefix check.
-  humanURL: https://docs.spycloud.com/public-sc/reference/consumer-ato-guidelines
-  baseURL: https://api.spycloud.io/sp-v2
+    url: openapi/spycloud-breach-api-openapi.yml
+- aid: spycloud:spycloud-check-api
+  name: SpyCloud Check API
+  description: The Check API from SpyCloud — 2 operation(s) for check.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Check
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-consumer-ato-prevention-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-consumer-ato-prevention-overlay.yaml
-- name: SpyCloud Cybercrime Investigations API
-  description: Investigations API — the broadest query surface across SpyCloud's recaptured data, letting analysts
-    pivot across emails, usernames, passwords, domains, IPs, phone numbers, social handles, infected machine IDs,
-    log IDs and identity documents (passport, driver's licence, national ID, SSN, bank and card numbers) to identify
-    and profile threat actors.
-  humanURL: https://docs.spycloud.com/public-sc/reference/investigations-api-guidelines
-  baseURL: https://api.spycloud.io/investigations-v2
+    url: openapi/spycloud-check-api-openapi.yml
+- aid: spycloud:spycloud-compass-api
+  name: SpyCloud Compass API
+  description: The Compass API from SpyCloud — 5 operation(s) for compass.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Compass
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-investigations-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-investigations-overlay.yaml
-- name: SpyCloud Data Partnership API
-  description: Data Partnership API — bulk partner access to recaptured breach records keyed on a wide set of identifiers
-    including domain, email, username, IP, phone, passwords, and hashed identity documents (health insurance ID,
-    driver's licence, national ID, passport, SSN, bank and credit card numbers).
-  humanURL: https://docs.spycloud.com/public-sc/reference/data-partner-api-guidelines
-  baseURL: https://api.spycloud.io/sp-v2
+    url: openapi/spycloud-compass-api-openapi.yml
+- aid: spycloud:spycloud-data-api
+  name: SpyCloud Data API
+  description: The Data API from SpyCloud — 2 operation(s) for data.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Data
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-data-partnership-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-data-partnership-overlay.yaml
-- name: SpyCloud IDLink API
-  description: IDLink automated identity analytics — given an email, phone number or username, traverses SpyCloud's
-    recaptured identity graph up to four pivot levels deep to return the correlated identity, supporting synthetic-identity
-    detection and holistic exposure analysis. Returns JSON or json-graph-spec.
-  humanURL: https://docs.spycloud.com/public-sc/reference/idlink-api-guidelines
-  baseURL: https://api.spycloud.io/idl-v2
+    url: openapi/spycloud-data-api-openapi.yml
+- aid: spycloud:spycloud-query-api
+  name: SpyCloud Query API
+  description: The Query API from SpyCloud — 3 operation(s) for query.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Query
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-idlink-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-idlink-overlay.yaml
-- name: SpyCloud Compromised Credit Card API
-  description: Fraud-detection API returning compromised credit, debit, gift and loyalty card records recaptured
-    from breaches and malware logs, queried by six-character BIN.
-  humanURL: https://docs.spycloud.com/public-sc/reference/compromised-cc-api-guidelines
-  baseURL: https://api.spycloud.io/fd-v1
+    url: openapi/spycloud-query-api-openapi.yml
+- aid: spycloud:spycloud-stats-api
+  name: SpyCloud Stats API
+  description: The Stats API from SpyCloud — 2 operation(s) for stats.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Stats
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-compromised-credit-card-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-compromised-credit-card-overlay.yaml
-- name: SpyCloud Prospecting API
-  description: Exposure statistics API returning aggregate counts of recaptured breach and malware exposures for
-    a domain or an email address, over a configurable lookback window, without returning the underlying records.
-  humanURL: https://docs.spycloud.com/public-sc/reference/prospecting-api-guidelines
-  baseURL: https://api.spycloud.io/prospecting-v2
+    url: openapi/spycloud-stats-api-openapi.yml
+- aid: spycloud:spycloud-watchlist-api
+  name: SpyCloud Watchlist API
+  description: The Watchlist API from SpyCloud — 5 operation(s) for watchlist.
+  humanURL: https://docs.spycloud.com/public-sc/reference/enterprise-ato-api-guidelines
+  baseURL: https://api.spycloud.io/enterprise-v2
+  tags:
+  - Watchlist
   properties:
   - type: OpenAPI
-    url: openapi/spycloud-prospecting-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-prospecting-overlay.yaml
-- name: SpyCloud NIST Password API
-  description: NIST SP 800-63B aligned compromised-password screening. Submit a five-hex-digit prefix of an NTLM,
-    SHA-1, SHA-256 or SHA-512 password hash and receive matching hashes, so passwords can be validated at account
-    creation or reset without transmitting the password itself.
-  humanURL: https://docs.spycloud.com/public-sc/reference/nist-api-guidelines
-  baseURL: https://api.spycloud.io/nist-password-v2
-  properties:
-  - type: OpenAPI
-    url: openapi/spycloud-nist-password-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-nist-password-overlay.yaml
-- name: SpyCloud Session Identity Protection API
-  description: Session Identity Protection (SIP) API — returns stolen session cookies recaptured from infostealer
-    malware for a given cookie domain, with cookie-name and expiration filtering, so session-hijacking exposure
-    can be detected and live sessions invalidated.
-  humanURL: https://docs.spycloud.com/public-sc/reference/sip-api-guidelines
-  baseURL: https://api.spycloud.io/sip-v1
-  properties:
-  - type: OpenAPI
-    url: openapi/spycloud-session-identity-protection-openapi.yml
-  - type: Overlay
-    url: overlays/spycloud-session-identity-protection-overlay.yaml
+    url: openapi/spycloud-watchlist-api-openapi.yml
 common:
+- type: MCPServer
+  url: mcp/spycloud-mcp.yml
+- type: Overlay
+  url: overlays/spycloud-compromised-credit-card-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/spycloud-agentic-access.yml
 - type: VulnerabilityDisclosure
