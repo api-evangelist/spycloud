@@ -11,7 +11,7 @@ description: 'SpyCloud is an Austin, Texas based identity threat protection comp
   per page, and backed by a 99.9% uptime SLA.'
 url: https://raw.githubusercontent.com/api-evangelist/spycloud/refs/heads/main/apis.yml
 image: https://spycloud.com/wp-content/uploads/2025/04/bg-img-dotted-lines-1920x700-1-1.png
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 x-type: company
 x-source: harvest:secondary-market
 created: '2026-08-05'
