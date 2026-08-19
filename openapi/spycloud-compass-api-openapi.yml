@@ -1,0 +1,329 @@
+openapi: 3.2.0
+info:
+  title: enterprise-ato-prevention-api Compass API
+  version: '1.1'
+servers:
+- url: https://api.spycloud.io/enterprise-v2
+security:
+- sec0: []
+tags:
+- name: Compass
+paths:
+  /compass/devices:
+    get:
+      summary: List all devices
+      description: ''
+      operationId: eap-list-all-compass-devices
+      parameters:
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+        required: false
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: since_infected
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the infected_time.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: until_infected
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the infected_time field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+        required: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Compass
+  /compass/data/devices/{infected_machine_id}:
+    get:
+      summary: Get records for a device
+      description: ''
+      operationId: eap-get-records-for-a-device
+      parameters:
+      - name: infected_machine_id
+        in: path
+        description: An Infected Machine ID or Log ID to search for compass breach records from a specific infected machine.
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Compass
+  /compass/applications:
+    get:
+      summary: List all applications
+      description: ''
+      operationId: eap-list-all-applications
+      parameters:
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Compass
+  /compass/data/applications/{target_application}:
+    get:
+      summary: Get records for an application
+      description: ''
+      operationId: eap-get-records-for-an-application
+      parameters:
+      - name: target_application
+        in: path
+        description: One or more comma delimited Compass target application (subdomain or domain) to search for.
+        schema:
+          type: string
+        required: true
+      - name: source_id
+        in: query
+        description: This parameter allows you to filter based on a particular breach source.
+        schema:
+          type: integer
+          format: int32
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Compass
+  /compass/data:
+    get:
+      summary: Get all records
+      description: ''
+      operationId: eap-get-all-records
+      parameters:
+      - name: source_id
+        in: query
+        description: One or more comma delimited numeric severity code to filter based on the severity.
+        schema:
+          type: string
+        required: false
+      - name: since
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: until
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: since_infected
+        in: query
+        description: This parameter allows you to define the starting point for a date range query on the infected_time field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: until_infected
+        in: query
+        description: This parameter allows you to define the ending point for a date range query on the infected_time field.
+        schema:
+          type: string
+          format: date
+        required: false
+      - name: type
+        in: query
+        description: This parameter will return records that are verified or unverified, meaning those that matched the watchlist or not.  By default if type is not used, both types will be returned
+        schema:
+          type: string
+          enum:
+          - verified
+          - unverified
+        required: false
+      - name: cursor
+        in: query
+        description: Token used for iterating through multiple pages of results.
+        schema:
+          type: string
+        required: false
+      - name: salt
+        in: query
+        description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.
+        schema:
+          type: string
+        required: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Compass
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: false
+x-readme-fauxas: true

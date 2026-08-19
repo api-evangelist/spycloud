@@ -13,9 +13,9 @@ search_evidence:
   http_status: 403
 - probe: npm / docs / web search for "SpyCloud MCP server"
   result: no first-party MCP server found
-note: SpyCloud publishes no hosted or remote MCP server as of this probe. The tools below are a CANDIDATE surface
-  derived one-to-one from published OpenAPI operations — they are a proposal, not something SpyCloud operates. Every
-  tool inherits its real input schema from the referenced operation parameters.
+note: SpyCloud publishes no hosted or remote MCP server as of this probe. The tools below are a CANDIDATE
+  surface derived one-to-one from published OpenAPI operations — they are a proposal, not something SpyCloud
+  operates. Every tool inherits its real input schema from the referenced operation parameters.
 server:
   name: spycloud
   transport: http
@@ -442,3 +442,9 @@ tools:
   method: GET
   path: /breach/catalog/{id}
   server: https://api.spycloud.io/sip-v1
+deployment:
+  mode: none
+  verified: derived
+  tools: 69
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,385 @@
+{
+  "item": [
+    {
+      "id": "2750f025-cdc4-4d63-a357-2202f2eac238",
+      "name": "Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0d5ec4f7-9ae0-4d86-ac7c-1ca951b926b5",
+          "name": "Get stats for a domain",
+          "request": {
+            "name": "Get stats for a domain",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                "domains",
+                ":domain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lookback",
+                  "value": "all",
+                  "description": "Relative time range starting at current time and counting back 30, 90, 180 or 365 or all time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) Domain name to search stats for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "818fb173-b796-4d1e-9917-89046ffb9ae7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "domains",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lookback",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name to search stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain\": {\n    \"value\": \"ability.com\",\n    \"lookback\": \"all\",\n    \"last_discovered_days_ago\": 6,\n    \"records\": 137835,\n    \"related_sources\": 736,\n    \"cookie_records\": 15356,\n    \"employee_last_discovered_days_ago\": 6,\n    \"employee_records\": 134531,\n    \"employee_related_sources\": 640,\n    \"employee_credit_card_records\": 2786,\n    \"employee_phish_records\": 0,\n    \"employee_phish_records_with_password\": 0,\n    \"employee_distinct_infected_machine_ids\": 7152,\n    \"employee_distinct_emails\": 64383,\n    \"employee_distinct_passwords\": 48257,\n    \"employee_distinct_email_password_combinations\": 93809,\n    \"employee_infected_distinct_emails\": 48533,\n    \"employee_phish_records_distinct_emails\": 0,\n    \"consumer_last_discovered_days_ago\": 12,\n    \"consumer_records\": 3304,\n    \"consumer_related_sources\": 139,\n    \"consumer_credit_card_records\": 42,\n    \"consumer_distinct_infected_machine_ids\": 2531,\n    \"consumer_distinct_emails\": 2456,\n    \"consumer_distinct_passwords\": 2274,\n    \"consumer_distinct_email_password_combinations\": 2311,\n    \"consumer_infected_distinct_emails\": 2456,\n    \"employee_source_type_breakdown\": [\n      {\n        \"source_type\": \"unknown\",\n        \"record_count\": 84327,\n        \"related_sources\": 519,\n        \"last_seen_date\": \"2025-03-10T00:00:00Z\"\n      },\n      {\n        \"source_type\": \"infostealer\",\n        \"record_count\": 50203,\n        \"related_sources\": 120,\n        \"last_seen_date\": \"2026-04-07T00:00:00Z\"\n      },\n      {\n        \"source_type\": \"exfiltrated\",\n        \"record_count\": 1,\n        \"related_sources\": 1,\n        \"last_seen_date\": \"2025-05-09T00:00:00Z\"\n      }\n    ],\n    \"consumer_source_type_breakdown\": [\n      {\n        \"source_type\": \"unknown\",\n        \"record_count\": 2338,\n        \"related_sources\": 50,\n        \"last_seen_date\": \"2024-04-08T00:00:00Z\"\n      },\n      {\n        \"source_type\": \"infostealer\",\n        \"record_count\": 966,\n        \"related_sources\": 89,\n        \"last_seen_date\": \"2026-04-01T00:00:00Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b40e92b-004b-4f82-b31e-c5f8365efe84",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "domains",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lookback",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name to search stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64a28cef-68f5-4f27-809d-e4fa6767fd91",
+          "name": "Get stats for an email",
+          "request": {
+            "name": "Get stats for an email",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                "emails",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip_domain",
+                  "value": "<boolean>",
+                  "description": "Skip domain stat results, returns email stats only. Use this to improve response time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) Email address to search stats for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c94e96f3-8318-433c-a04a-372ded0c50c2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "emails",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip_domain",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) Email address to search stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": {\n    \"last_discovered_days_ago\": 1,\n    \"records\": 6239,\n    \"related_sources\": 1178,\n    \"value\": \"test@email.com\"\n  },\n  \"domain\": {\n    \"last_discovered_days_ago\": 0,\n    \"records\": 17441073,\n    \"related_sources\": 32206,\n    \"value\": \"email.com\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f41986-b8e8-4353-9b1d-f5a4c2437e71",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "emails",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip_domain",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) Email address to search stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spycloud.io/prospecting-v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0dac3147-918e-40a9-a986-19406e5e9525",
+    "name": "prospecting-api Stats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

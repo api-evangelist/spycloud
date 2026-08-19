@@ -1,0 +1,359 @@
+openapi: 3.2.0
+info:
+  title: prospecting-api Stats API
+  version: '1.1'
+servers:
+- url: https://api.spycloud.io/prospecting-v2
+security:
+- sec0: []
+tags:
+- name: Stats
+paths:
+  /stats/domains/{domain}:
+    get:
+      summary: Get stats for a domain
+      description: ''
+      operationId: get-stats-for-a-domain
+      parameters:
+      - name: domain
+        in: path
+        description: Domain name to search stats for
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: lookback
+        schema:
+          type: string
+          default: all
+          enum:
+          - 30d
+          - 90d
+          - 180d
+          - 365d
+          - all
+        description: Relative time range starting at current time and counting back 30, 90, 180 or 365 or all time.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    domain:
+                      value: ability.com
+                      lookback: all
+                      last_discovered_days_ago: 6
+                      records: 137835
+                      related_sources: 736
+                      cookie_records: 15356
+                      employee_last_discovered_days_ago: 6
+                      employee_records: 134531
+                      employee_related_sources: 640
+                      employee_credit_card_records: 2786
+                      employee_phish_records: 0
+                      employee_phish_records_with_password: 0
+                      employee_distinct_infected_machine_ids: 7152
+                      employee_distinct_emails: 64383
+                      employee_distinct_passwords: 48257
+                      employee_distinct_email_password_combinations: 93809
+                      employee_infected_distinct_emails: 48533
+                      employee_phish_records_distinct_emails: 0
+                      consumer_last_discovered_days_ago: 12
+                      consumer_records: 3304
+                      consumer_related_sources: 139
+                      consumer_credit_card_records: 42
+                      consumer_distinct_infected_machine_ids: 2531
+                      consumer_distinct_emails: 2456
+                      consumer_distinct_passwords: 2274
+                      consumer_distinct_email_password_combinations: 2311
+                      consumer_infected_distinct_emails: 2456
+                      employee_source_type_breakdown:
+                      - source_type: unknown
+                        record_count: 84327
+                        related_sources: 519
+                        last_seen_date: '2025-03-10T00:00:00Z'
+                      - source_type: infostealer
+                        record_count: 50203
+                        related_sources: 120
+                        last_seen_date: '2026-04-07T00:00:00Z'
+                      - source_type: exfiltrated
+                        record_count: 1
+                        related_sources: 1
+                        last_seen_date: '2025-05-09T00:00:00Z'
+                      consumer_source_type_breakdown:
+                      - source_type: unknown
+                        record_count: 2338
+                        related_sources: 50
+                        last_seen_date: '2024-04-08T00:00:00Z'
+                      - source_type: infostealer
+                        record_count: 966
+                        related_sources: 89
+                        last_seen_date: '2026-04-01T00:00:00Z'
+              schema:
+                type: object
+                properties:
+                  domain:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                        example: ability.com
+                      lookback:
+                        type: string
+                        example: all
+                      last_discovered_days_ago:
+                        type: integer
+                        example: 6
+                        default: 0
+                      records:
+                        type: integer
+                        example: 137835
+                        default: 0
+                      related_sources:
+                        type: integer
+                        example: 736
+                        default: 0
+                      cookie_records:
+                        type: integer
+                        example: 15356
+                        default: 0
+                      employee_last_discovered_days_ago:
+                        type: integer
+                        example: 6
+                        default: 0
+                      employee_records:
+                        type: integer
+                        example: 134531
+                        default: 0
+                      employee_related_sources:
+                        type: integer
+                        example: 640
+                        default: 0
+                      employee_credit_card_records:
+                        type: integer
+                        example: 2786
+                        default: 0
+                      employee_phish_records:
+                        type: integer
+                        example: 0
+                        default: 0
+                      employee_phish_records_with_password:
+                        type: integer
+                        example: 0
+                        default: 0
+                      employee_distinct_infected_machine_ids:
+                        type: integer
+                        example: 7152
+                        default: 0
+                      employee_distinct_emails:
+                        type: integer
+                        example: 64383
+                        default: 0
+                      employee_distinct_passwords:
+                        type: integer
+                        example: 48257
+                        default: 0
+                      employee_distinct_email_password_combinations:
+                        type: integer
+                        example: 93809
+                        default: 0
+                      employee_infected_distinct_emails:
+                        type: integer
+                        example: 48533
+                        default: 0
+                      employee_phish_records_distinct_emails:
+                        type: integer
+                        example: 0
+                        default: 0
+                      consumer_last_discovered_days_ago:
+                        type: integer
+                        example: 12
+                        default: 0
+                      consumer_records:
+                        type: integer
+                        example: 3304
+                        default: 0
+                      consumer_related_sources:
+                        type: integer
+                        example: 139
+                        default: 0
+                      consumer_credit_card_records:
+                        type: integer
+                        example: 42
+                        default: 0
+                      consumer_distinct_infected_machine_ids:
+                        type: integer
+                        example: 2531
+                        default: 0
+                      consumer_distinct_emails:
+                        type: integer
+                        example: 2456
+                        default: 0
+                      consumer_distinct_passwords:
+                        type: integer
+                        example: 2274
+                        default: 0
+                      consumer_distinct_email_password_combinations:
+                        type: integer
+                        example: 2311
+                        default: 0
+                      consumer_infected_distinct_emails:
+                        type: integer
+                        example: 2456
+                        default: 0
+                      employee_source_type_breakdown:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            source_type:
+                              type: string
+                              example: unknown
+                            record_count:
+                              type: integer
+                              example: 84327
+                              default: 0
+                            related_sources:
+                              type: integer
+                              example: 519
+                              default: 0
+                            last_seen_date:
+                              type: string
+                              example: '2025-03-10T00:00:00Z'
+                              format: date-time
+                      consumer_source_type_breakdown:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            source_type:
+                              type: string
+                              example: unknown
+                            record_count:
+                              type: integer
+                              example: 2338
+                              default: 0
+                            related_sources:
+                              type: integer
+                              example: 50
+                              default: 0
+                            last_seen_date:
+                              type: string
+                              example: '2024-04-08T00:00:00Z'
+                              format: date-time
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Stats
+  /stats/emails/{email}:
+    get:
+      summary: Get stats for an email
+      description: ''
+      operationId: prospecting-get-stats-for-an-email
+      parameters:
+      - name: email
+        in: path
+        description: Email address to search stats for
+        schema:
+          type: string
+        required: true
+      - name: skip_domain
+        in: query
+        description: Skip domain stat results, returns email stats only. Use this to improve response time.
+        schema:
+          type: boolean
+          enum:
+          - true
+          - false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    email:
+                      last_discovered_days_ago: 1
+                      records: 6239
+                      related_sources: 1178
+                      value: test@email.com
+                    domain:
+                      last_discovered_days_ago: 0
+                      records: 17441073
+                      related_sources: 32206
+                      value: email.com
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: object
+                    properties:
+                      last_discovered_days_ago:
+                        type: integer
+                        example: 1
+                        default: 0
+                      records:
+                        type: integer
+                        example: 6239
+                        default: 0
+                      related_sources:
+                        type: integer
+                        example: 1178
+                        default: 0
+                      value:
+                        type: string
+                        example: test@email.com
+                  domain:
+                    type: object
+                    properties:
+                      last_discovered_days_ago:
+                        type: integer
+                        example: 0
+                        default: 0
+                      records:
+                        type: integer
+                        example: 17441073
+                        default: 0
+                      related_sources:
+                        type: integer
+                        example: 32206
+                        default: 0
+                      value:
+                        type: string
+                        example: email.com
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Stats
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: false
+x-readme-fauxas: true

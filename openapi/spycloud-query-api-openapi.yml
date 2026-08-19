@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  title: idlink-api Query API
+  version: '1.1'
+servers:
+- url: https://api.spycloud.io/idl-v2
+security:
+- sec0: []
+tags:
+- name: Query
+paths:
+  /query/emails/{email}:
+    get:
+      summary: Get records by email
+      description: ''
+      operationId: idl-get-records-by-email
+      parameters:
+      - name: email
+        in: path
+        description: Email address to search for
+        schema:
+          type: string
+        required: true
+      - name: max_depth
+        in: query
+        description: Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: output_format
+        in: query
+        description: '"json" or "json-graph-spec"'
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Query
+  /query/phone-numbers/{phone}:
+    get:
+      summary: Get records by phone number
+      description: ''
+      operationId: idl-get-records-by-phone-number
+      parameters:
+      - name: phone
+        in: path
+        description: The phone number you wish to search for. Must only be numerical values of length 7 to 15 characters. You can also search for the sha1, sha256, or sha512 hash of the phone number.
+        schema:
+          type: string
+        required: true
+      - name: max_depth
+        in: query
+        description: Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: output_format
+        in: query
+        description: '"json" or "json-graph-spec"'
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Query
+  /query/usernames/{username}:
+    get:
+      summary: Get records by username
+      description: ''
+      operationId: idl-get-records-by-username
+      parameters:
+      - name: username
+        in: path
+        description: The username you wish to search for.
+        schema:
+          type: string
+        required: true
+      - name: max_depth
+        in: query
+        description: Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: output_format
+        in: query
+        description: '"json" or "json-graph-spec"'
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Query
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: false
+x-readme-fauxas: true

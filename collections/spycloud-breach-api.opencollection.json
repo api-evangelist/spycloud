@@ -1,0 +1,1325 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spycloud Breach API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Breach",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get records by email address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/emails/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "One or more comma delimited email addresses to search for. You can search for up to 10 email addresses at a time. You can also search for the sha1, sha256, or sha512 hash of the email."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in format YYYY-MM-DD"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in format YYYY-MM-DD"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by email address"
+        },
+        {
+          "info": {
+            "name": "Get records by IP address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/ips/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "IP address or network CIDR notation to search for. For CIDR notation, use an underscore instead of a slash."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date)."
+              }
+            ]
+          },
+          "docs": "Get records by IP address"
+        },
+        {
+          "info": {
+            "name": "Get records by usernames",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/usernames/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username you wish to search for. You can also search for the sha1, sha256, or sha512 hash of the username."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by usernames"
+        },
+        {
+          "info": {
+            "name": "List all breach metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/catalog/",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query value to search the breach catalog for."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              }
+            ]
+          },
+          "docs": "List all breach metadata"
+        },
+        {
+          "info": {
+            "name": "Get metadata for a breach",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/catalog/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Numerical ID of the breach. Both integer and UUIDv4 ID formats are supported. You may also use a comma delimiter to request more than one breach at a time."
+              }
+            ]
+          },
+          "docs": "Get metadata for a breach"
+        },
+        {
+          "info": {
+            "name": "Get records by phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/phone-numbers/:phone_number",
+            "params": [
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "path",
+                "description": "phone number you wish to search for. Must only be numerical values of length 7 to 15 characters. You can also search for the sha1, sha256, or sha512 hash of the phone number."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by phone number"
+        },
+        {
+          "info": {
+            "name": "Get records by domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/domains/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "Domain name to search for. You can also search for the sha1 hash of the domain"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "This parameter lets you filter results by several types. The allowed values are 'corporate' for corporate records, and 'infected' for infected user records, email_domain to just match against email domains, and target_domain to just match against target domains or subdomains. If no value has been provided the API function will, by default, return all record types."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get records by domain"
+        },
+        {
+          "info": {
+            "name": "Get records by Health Insurance ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/health-insurance-ids/:health_insurance_id",
+            "params": [
+              {
+                "name": "health_insurance_id",
+                "value": "",
+                "type": "path",
+                "description": "Hashed input of the SHA-1 must be all upper case alphanumerics, 6 to 64 characters.  If using SHA-256/512, you must first take a SHA-1 hash of the plaintext health insurance ID. Plaintext queries are not supported."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used"
+              }
+            ]
+          },
+          "docs": "Get records by Health Insurance ID"
+        },
+        {
+          "info": {
+            "name": "Get records by bank number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/bank-numbers/:bank_number",
+            "params": [
+              {
+                "name": "bank_number",
+                "value": "",
+                "type": "path",
+                "description": "Bank Number to search for.  You can also search for the sha1, sha256, or sha512 hash of the Bank Number."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results. By default our API methods return up to 1,000 items per page. If the number of requested items is greater than 1,000 a cursor token is provided in the return payload. If set, you can use this value to iterate to the next page of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used"
+              }
+            ]
+          },
+          "docs": "Get records by bank number"
+        },
+        {
+          "info": {
+            "name": "Get records by credit card number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/cc-numbers/:cc_number",
+            "params": [
+              {
+                "name": "cc_number",
+                "value": "",
+                "type": "path",
+                "description": "Hashed input of the SHA-1 must be created from 12 to 19 digits without spaces, dashes, or special characters.  If using SHA-256/512, you must first take a SHA-1 hash of the plaintext CC number."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by credit card number"
+        },
+        {
+          "info": {
+            "name": "Get records by drivers license",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/drivers-licenses/:drivers_license",
+            "params": [
+              {
+                "name": "drivers_license",
+                "value": "",
+                "type": "path",
+                "description": "Drivers License Number to search for.  You can also search for the sha1, sha256, or sha512 hash of the Drivers License Number."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results. By default our API methods return up to 1,000 items per page. If the number of requested items is greater than 1,000 a cursor token is provided in the return payload. If set, you can use this value to iterate to the next page of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used"
+              }
+            ]
+          },
+          "docs": "Get records by drivers license"
+        },
+        {
+          "info": {
+            "name": "Get records by National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/national-ids/:national_id",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID to search for. You can also search for the sha1, sha256, or sha512 hash of the National ID."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by National ID"
+        },
+        {
+          "info": {
+            "name": "Get records by passport number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/passport-numbers/:passport_number",
+            "params": [
+              {
+                "name": "passport_number",
+                "value": "",
+                "type": "path",
+                "description": "Passport Number to search for. You can also search for the sha1, sha256, or sha512 hash of the Passport Number."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by passport number"
+        },
+        {
+          "info": {
+            "name": "get_breachdatapasswords{password}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2//breach/data/passwords/:password",
+            "params": [
+              {
+                "name": "password",
+                "value": "",
+                "type": "path",
+                "description": "Password you wish to search for"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used"
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Get records by Social Security Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/social-security-numbers/:social_security_number",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results. By default our API methods return up to 1,000 items per page. If the number of requested items is greater than 1,000 a cursor token is provided in the return payload. If set, you can use this value to iterate to the next page of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used"
+              },
+              {
+                "name": "social_security_number",
+                "value": "",
+                "type": "path",
+                "description": "Hashed input must originate from a 9-digit SSN (numbers only — no spaces, dashes, or special characters). The lookup accepts either a SHA-1 of the plaintext SSN, or a SHA-256/SHA-512 computed from that SHA-1"
+              }
+            ]
+          },
+          "docs": "Get records by Social Security Number"
+        },
+        {
+          "info": {
+            "name": "Get records by password",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/passwords/:password",
+            "params": [
+              {
+                "name": "password",
+                "value": "",
+                "type": "path",
+                "description": "Password you wish to search for."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used"
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by password"
+        },
+        {
+          "info": {
+            "name": "Get all records in watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/watchlist",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "This parameter lets you filter results by type. The allowed values are corporate (corporate records), infected (infected user records from botnet data), email_domain (records associated with a specific email domain), and target_domain (records associated with a monitored/target domain). If no value is provided, the API will return all record types by default."
+              },
+              {
+                "name": "watchlist_type",
+                "value": "",
+                "type": "query",
+                "description": "This parameters lets you filter results for only emails or only domains on your watchlist. The allowed values are: ['email', 'domain', 'subdomain', 'ip']. If no value has been provided, the API will return all watchlist types."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date). Format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on a particular breach source. A comma separated list of source ids can also be used"
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get all records in watchlist"
+        },
+        {
+          "info": {
+            "name": "List all breach metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/catalog",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query value to search the breach catalog for."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              }
+            ]
+          },
+          "docs": "List all breach metadata"
+        },
+        {
+          "info": {
+            "name": "Get records by Infected Machine ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/infected-machine-ids/:infected_machine_id",
+            "params": [
+              {
+                "name": "infected_machine_id",
+                "value": "",
+                "type": "path",
+                "description": "An Infected Machine ID to search for breach records."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by Infected Machine ID"
+        },
+        {
+          "info": {
+            "name": "Get records by Log ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/log-ids/:log_id",
+            "params": [
+              {
+                "name": "log_id",
+                "value": "",
+                "type": "path",
+                "description": "A Log ID to search for breach records."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records by Log ID"
+        },
+        {
+          "info": {
+            "name": "Get records by email username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/email-usernames/:email_username",
+            "params": [
+              {
+                "name": "email_username",
+                "value": "",
+                "type": "path",
+                "description": "The email username you wish to search for. This is the the portion of an email before the \"@\" symbol."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              },
+              {
+                "name": "fuzzy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to use fuzzy matching when searching for email usernames. This means if you search for username \"Bob12\" you will also get \"Bob123\" and \"Bob1234\" as part of the results. This must be \"true\" or \"false\". By default this is \"false\"."
+              }
+            ]
+          },
+          "docs": "Get records by email username"
+        },
+        {
+          "info": {
+            "name": "Get records by social handle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/social-handles/:social_handle",
+            "params": [
+              {
+                "name": "social_handle",
+                "value": "",
+                "type": "path",
+                "description": "Social handle you wish to search for."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "since_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "until_modification_date",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the when an already published record was modified (record_modification_date)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric source id to filter."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              },
+              {
+                "name": "fuzzy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to use fuzzy matching when searching for usernames. This means if you search for username \"Bob12\" you will also get \"Bob123\" and \"Bob1234\" as part of the results. This must be \"true\" or \"false\". By default this is \"false\"."
+              }
+            ]
+          },
+          "docs": "Get records by social handle"
+        },
+        {
+          "info": {
+            "name": "Get cookies for domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/breach/data/cookie-domains/:cookie_domain",
+            "params": [
+              {
+                "name": "cookie_domain",
+                "value": "",
+                "type": "path",
+                "description": "This parameter allows you to define a cookie domain to search against, results will include all subdomains.  Optionally, a specific cookie subdomain could be used which will result in only that specific cookie subdomain returned."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on a particular breach source."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on the numeric severity code. *Note - all cookie records have a default severity of 26"
+              },
+              {
+                "name": "cookie_name",
+                "value": "",
+                "type": "query",
+                "description": "This **case sensitive** parameter allows you to search for a specific cookie name"
+              },
+              {
+                "name": "since_cookie_expiration",
+                "value": "",
+                "type": "query",
+                "description": "Since a cookie expiration date (results are inclusive of date specified)"
+              },
+              {
+                "name": "until_cookie_expiration",
+                "value": "",
+                "type": "query",
+                "description": "Until a cookie expiration date (results are inclusive of date specified)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              }
+            ]
+          },
+          "docs": "Get cookies for domain"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

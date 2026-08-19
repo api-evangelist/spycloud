@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "enterprise-ato-prevention-api Watchlist API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Watchlist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/watchlist/identifiers",
+            "params": [
+              {
+                "name": "watchlist_type",
+                "value": "",
+                "type": "query",
+                "description": "This parameters lets you filter results for only emails or only domains on your watchlist. The allowed values are: ['email', 'domain', 'subdomain', 'ip']. If no value has been provided, the API will return all watchlist types."
+              },
+              {
+                "name": "verified",
+                "value": "",
+                "type": "query",
+                "description": "This parameter lets you filter results by verified status. The allowed values are 'yes' or 'no'. If no value has been provided, the API function will returns both verified and unverified identifiers."
+              }
+            ]
+          },
+          "docs": "List all identifiers"
+        },
+        {
+          "info": {
+            "name": "Get an identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/watchlist/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier to retrieve from your watchlist."
+              }
+            ]
+          },
+          "docs": "Get an identifier"
+        },
+        {
+          "info": {
+            "name": "Create an identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spycloud.io/enterprise-v2/watchlist/create",
+            "headers": [
+              {
+                "name": "content-type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identifier"
+        },
+        {
+          "info": {
+            "name": "Delete an identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spycloud.io/enterprise-v2/watchlist/:identifier/delete",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier to delete from your watchlist."
+              }
+            ]
+          },
+          "docs": "Delete an identifier"
+        },
+        {
+          "info": {
+            "name": "Verify an identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/watchlist/:identifier/verify",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "The domain identifier on your watchlist to verify. Note - this method only works for domains."
+              }
+            ]
+          },
+          "docs": "Verify an identifier"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

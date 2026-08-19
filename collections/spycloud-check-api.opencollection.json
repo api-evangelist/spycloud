@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spycloud Check API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zero Knowledge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/check/hashes/credentials/:hash_prefix",
+            "params": [
+              {
+                "name": "hash_prefix",
+                "value": "",
+                "type": "path",
+                "description": "Query a hash prefix with a character length of 5, 6, 7, or 8.  The hashes are made from a combination of email + password OR username + password"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to choose the hash type to search. Options are sha1, sha256, sha512, and ntlm."
+              }
+            ]
+          },
+          "docs": "Zero Knowledge"
+        },
+        {
+          "info": {
+            "name": "Check password hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/sp-v2/check/hashes/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "5 hexadecimal digit prefix of a password hash."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Hashing algorithm of password hash [ntlm, sha1, sha256, sha512]."
+              }
+            ]
+          },
+          "docs": "Check password hash"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

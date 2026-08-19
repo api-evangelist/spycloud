@@ -1,0 +1,398 @@
+{
+  "item": [
+    {
+      "id": "8d922975-a7f2-4a26-b1cf-0257267cddfa",
+      "name": "Check",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31e7dffb-aea8-4fc9-8ee3-6d8775b2e16c",
+          "name": "Zero Knowledge",
+          "request": {
+            "name": "Zero Knowledge",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "check",
+                "hashes",
+                "credentials",
+                ":hash_prefix"
+              ],
+              "host": [
+                "{{check-hashes-credentials-hash_prefix-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) This parameter allows you to choose the hash type to search. Options are sha1, sha256, sha512, and ntlm."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash_prefix",
+                  "description": "(Required) Query a hash prefix with a character length of 5, 6, 7, or 8.  The hashes are made from a combination of email + password OR username + password"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd3bbf0a-0cb0-4ea2-8e64-81b5f99388ed",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check",
+                    "hashes",
+                    "credentials",
+                    ":hash_prefix"
+                  ],
+                  "host": [
+                    "{{check-hashes-credentials-hash_prefix-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash_prefix",
+                      "description": "(Required) Query a hash prefix with a character length of 5, 6, 7, or 8.  The hashes are made from a combination of email + password OR username + password"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a68aaa66-5b3e-4138-a182-a3d3e37cd88a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check",
+                    "hashes",
+                    "credentials",
+                    ":hash_prefix"
+                  ],
+                  "host": [
+                    "{{check-hashes-credentials-hash_prefix-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash_prefix",
+                      "description": "(Required) Query a hash prefix with a character length of 5, 6, 7, or 8.  The hashes are made from a combination of email + password OR username + password"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0f5e2b6-43b9-44d7-bdf8-b04a0c19cba0",
+          "name": "Check password hash",
+          "request": {
+            "name": "Check password hash",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "check",
+                "hashes",
+                ":hash"
+              ],
+              "host": [
+                "{{check-hashes-hash-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Hashing algorithm of password hash [ntlm, sha1, sha256, sha512]."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) 5 hexadecimal digit prefix of a password hash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "668931c7-6200-4c76-9800-423a03b328e7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check",
+                    "hashes",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{check-hashes-hash-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) 5 hexadecimal digit prefix of a password hash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6360c550-7a42-49df-bba9-6c178073c2d4",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check",
+                    "hashes",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{check-hashes-hash-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) 5 hexadecimal digit prefix of a password hash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spycloud.io/sp-v2",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.spycloud.io/sp-v2",
+      "key": "check-hashes-credentials-hash_prefix-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.spycloud.io/nist-password-v2",
+      "key": "check-hashes-hash-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c170c2b7-6c79-4420-8f89-756451d2288b",
+    "name": "Spycloud Check API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Check across 2 of this provider's published API definitions: spycloud-consumer-ato-prevention-openapi.yml, spycloud-nist-password-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

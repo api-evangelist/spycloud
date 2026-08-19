@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "compromised-credit-card-api Data API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get credit cards by BIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/fd-v1/data/cc/bins/:bin",
+            "params": [
+              {
+                "name": "bin",
+                "value": "",
+                "type": "path",
+                "description": "One or up to 10 comma delimited 6 character Credit card, Debit card, Gift card, or Loyalty card BINs to search for."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Used for pagination. Pass the cursor value returned from a previous response to retrieve the next page."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Override the salt key tied to your API key when hashing is enabled. This is typically not required unless you are instructed to provide a specific salt."
+              }
+            ]
+          },
+          "docs": "Get credit cards by BIN"
+        },
+        {
+          "info": {
+            "name": "List credit cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/fd-v1/data/cc/bins",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field in either format for date YYYY-MM-DD or datetime YYYY-MM-DDThh:mm:ss[z]"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Used for pagination. Pass the cursor value returned from a previous response to retrieve the next page."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Override the salt key tied to your API key when hashing is enabled. This is typically not required unless you are instructed to provide a specific salt."
+              }
+            ]
+          },
+          "docs": "List credit cards"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

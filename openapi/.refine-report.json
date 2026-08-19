@@ -1,0 +1,35 @@
+{
+  "provider": "spycloud",
+  "sources": [
+    "spycloud-breach-api-openapi.yml",
+    "spycloud-check-api-openapi.yml",
+    "spycloud-compass-api-openapi.yml",
+    "spycloud-data-api-openapi.yml",
+    "spycloud-query-api-openapi.yml",
+    "spycloud-stats-api-openapi.yml",
+    "spycloud-watchlist-api-openapi.yml"
+  ],
+  "outputs": [
+    "spycloud-breach-api-openapi.yml",
+    "spycloud-check-api-openapi.yml",
+    "spycloud-compass-api-openapi.yml",
+    "spycloud-data-api-openapi.yml",
+    "spycloud-query-api-openapi.yml",
+    "spycloud-stats-api-openapi.yml",
+    "spycloud-watchlist-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "spycloud-breach-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-check-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-compass-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-data-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-query-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-stats-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "spycloud-watchlist-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  title: Spycloud Check API
+  version: '1.1'
+  description: 'Operations tagged Check across 2 of this provider''s published API definitions: spycloud-consumer-ato-prevention-openapi.yml, spycloud-nist-password-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.spycloud.io/sp-v2
+- url: https://api.spycloud.io/nist-password-v2
+security:
+- sec0: []
+tags:
+- name: Check
+paths:
+  /check/hashes/credentials/{hash_prefix}:
+    servers:
+    - url: https://api.spycloud.io/sp-v2
+    get:
+      summary: Zero Knowledge
+      description: ''
+      operationId: cap-zero-knowledge
+      parameters:
+      - name: hash_prefix
+        in: path
+        description: Query a hash prefix with a character length of 5, 6, 7, or 8.  The hashes are made from a combination of email + password OR username + password
+        schema:
+          type: string
+        required: true
+      - name: type
+        in: query
+        description: This parameter allows you to choose the hash type to search. Options are sha1, sha256, sha512, and ntlm.
+        required: true
+        schema:
+          type: string
+          enum:
+          - sha1
+          - sha256
+          - sha512
+          - ntlm
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Check
+  /check/hashes/{hash}:
+    servers:
+    - url: https://api.spycloud.io/nist-password-v2
+    get:
+      summary: Check password hash
+      description: ''
+      operationId: nist-check-password-hash
+      parameters:
+      - name: hash
+        in: path
+        description: 5 hexadecimal digit prefix of a password hash.
+        schema:
+          type: string
+        required: true
+      - name: type
+        in: query
+        description: Hashing algorithm of password hash [ntlm, sha1, sha256, sha512].
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Check
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-refined-from:
+- spycloud-consumer-ato-prevention-openapi.yml
+- spycloud-nist-password-openapi.yml
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: false
+x-readme-fauxas: true

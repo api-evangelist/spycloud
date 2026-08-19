@@ -1,0 +1,241 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "enterprise-ato-prevention-api Compass API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compass",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/compass/devices",
+            "params": [
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "since_infected",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the infected_time."
+              },
+              {
+                "name": "until_infected",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the infected_time field."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "List all devices"
+        },
+        {
+          "info": {
+            "name": "Get records for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/compass/data/devices/:infected_machine_id",
+            "params": [
+              {
+                "name": "infected_machine_id",
+                "value": "",
+                "type": "path",
+                "description": "An Infected Machine ID or Log ID to search for compass breach records from a specific infected machine."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records for a device"
+        },
+        {
+          "info": {
+            "name": "List all applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/compass/applications",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              }
+            ]
+          },
+          "docs": "List all applications"
+        },
+        {
+          "info": {
+            "name": "Get records for an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/compass/data/applications/:target_application",
+            "params": [
+              {
+                "name": "target_application",
+                "value": "",
+                "type": "path",
+                "description": "One or more comma delimited Compass target application (subdomain or domain) to search for."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to filter based on a particular breach source."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get records for an application"
+        },
+        {
+          "info": {
+            "name": "Get all records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/enterprise-v2/compass/data",
+            "params": [
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "One or more comma delimited numeric severity code to filter based on the severity."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the spycloud_publish_date field."
+              },
+              {
+                "name": "since_infected",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the starting point for a date range query on the infected_time field."
+              },
+              {
+                "name": "until_infected",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows you to define the ending point for a date range query on the infected_time field."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "This parameter will return records that are verified or unverified, meaning those that matched the watchlist or not.  By default if type is not used, both types will be returned"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Token used for iterating through multiple pages of results."
+              },
+              {
+                "name": "salt",
+                "value": "",
+                "type": "query",
+                "description": "If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used."
+              }
+            ]
+          },
+          "docs": "Get all records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

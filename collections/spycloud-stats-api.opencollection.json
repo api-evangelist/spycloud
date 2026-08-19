@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "prospecting-api Stats API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get stats for a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/prospecting-v2/stats/domains/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "Domain name to search stats for"
+              },
+              {
+                "name": "lookback",
+                "value": "",
+                "type": "query",
+                "description": "Relative time range starting at current time and counting back 30, 90, 180 or 365 or all time."
+              }
+            ]
+          },
+          "docs": "Get stats for a domain"
+        },
+        {
+          "info": {
+            "name": "Get stats for an email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/prospecting-v2/stats/emails/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email address to search stats for"
+              },
+              {
+                "name": "skip_domain",
+                "value": "",
+                "type": "query",
+                "description": "Skip domain stat results, returns email stats only. Use this to improve response time."
+              }
+            ]
+          },
+          "docs": "Get stats for an email"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

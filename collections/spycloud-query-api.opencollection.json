@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "idlink-api Query API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get records by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/idl-v2/query/emails/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email address to search for"
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on."
+              },
+              {
+                "name": "output_format",
+                "value": "",
+                "type": "query",
+                "description": "\"json\" or \"json-graph-spec\""
+              }
+            ]
+          },
+          "docs": "Get records by email"
+        },
+        {
+          "info": {
+            "name": "Get records by phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/idl-v2/query/phone-numbers/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "The phone number you wish to search for. Must only be numerical values of length 7 to 15 characters. You can also search for the sha1, sha256, or sha512 hash of the phone number."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on."
+              },
+              {
+                "name": "output_format",
+                "value": "",
+                "type": "query",
+                "description": "\"json\" or \"json-graph-spec\""
+              }
+            ]
+          },
+          "docs": "Get records by phone number"
+        },
+        {
+          "info": {
+            "name": "Get records by username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spycloud.io/idl-v2/query/usernames/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The username you wish to search for."
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query",
+                "description": "Options for depth are 1 - 4. 1 meaning a normal query, 2 meaning a normal query and one additional pivot, and so on."
+              },
+              {
+                "name": "output_format",
+                "value": "",
+                "type": "query",
+                "description": "\"json\" or \"json-graph-spec\""
+              }
+            ]
+          },
+          "docs": "Get records by username"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
