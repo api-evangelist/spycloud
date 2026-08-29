@@ -10,6 +10,18 @@ description: 'SpyCloud is an Austin, Texas based identity threat protection comp
   All are REST/JSON, authenticated with an x-api-key header, IP allow-listed, cursor-paginated at 1,000 records
   per page, and backed by a 99.9% uptime SLA.'
 url: https://raw.githubusercontent.com/api-evangelist/spycloud/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://spycloud.com/wp-content/uploads/2025/04/bg-img-dotted-lines-1920x700-1-1.png
 specificationVersion: '0.23'
 x-type: company
