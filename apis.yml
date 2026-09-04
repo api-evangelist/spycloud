@@ -22,6 +22,20 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-03'
+  method: derived
 image: https://spycloud.com/wp-content/uploads/2025/04/bg-img-dotted-lines-1920x700-1-1.png
 specificationVersion: '0.23'
 x-type: company
@@ -116,8 +130,9 @@ apis:
   - type: OpenAPI
     url: openapi/spycloud-watchlist-api-openapi.yml
 common:
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/spycloud-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Overlay
   url: overlays/spycloud-compromised-credit-card-overlay.yaml
 - type: AgenticAccess
