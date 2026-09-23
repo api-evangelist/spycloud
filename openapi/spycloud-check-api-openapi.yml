@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Spycloud Check API
   version: '1.1'
-  description: 'Operations tagged Check across 2 of this provider''s published API definitions: spycloud-consumer-ato-prevention-openapi.yml, spycloud-nist-password-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Check across 2 of this provider''s published API definitions: spycloud-consumer-ato-prevention-openapi.json, spycloud-nist-password-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.spycloud.io/sp-v2
 - url: https://api.spycloud.io/nist-password-v2
@@ -12,8 +12,6 @@ tags:
 - name: Check
 paths:
   /check/hashes/credentials/{hash_prefix}:
-    servers:
-    - url: https://api.spycloud.io/sp-v2
     get:
       summary: Zero Knowledge
       description: ''
@@ -60,9 +58,9 @@ paths:
       deprecated: false
       tags:
       - Check
-  /check/hashes/{hash}:
     servers:
-    - url: https://api.spycloud.io/nist-password-v2
+    - url: https://api.spycloud.io/sp-v2
+  /check/hashes/{hash}:
     get:
       summary: Check password hash
       description: ''
@@ -103,6 +101,8 @@ paths:
       deprecated: false
       tags:
       - Check
+    servers:
+    - url: https://api.spycloud.io/nist-password-v2
 components:
   securitySchemes:
     sec0:
@@ -110,8 +110,8 @@ components:
       in: header
       name: x-api-key
 x-refined-from:
-- spycloud-consumer-ato-prevention-openapi.yml
-- spycloud-nist-password-openapi.yml
+- spycloud-consumer-ato-prevention-openapi.json
+- spycloud-nist-password-openapi.json
 x-readme:
   headers: []
   explorer-enabled: true

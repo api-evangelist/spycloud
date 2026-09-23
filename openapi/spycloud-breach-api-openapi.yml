@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Spycloud Breach API
   version: '1.1'
-  description: 'Operations tagged Breach across 5 of this provider''s published API definitions: spycloud-consumer-ato-prevention-openapi.yml, spycloud-data-partnership-openapi.yml, spycloud-enterprise-ato-prevention-openapi.yml, spycloud-investigations-openapi.yml, spycloud-session-identity-protection-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Breach across 5 of this provider''s published API definitions: spycloud-consumer-ato-prevention-openapi.json, spycloud-data-partnership-openapi.json, spycloud-enterprise-ato-prevention-openapi.json, spycloud-investigations-openapi.json, spycloud-session-identity-protection-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.spycloud.io/sp-v2
 - url: https://api.spycloud.io/enterprise-v2
@@ -14,8 +14,6 @@ tags:
 - name: Breach
 paths:
   /breach/data/emails/{email}:
-    servers:
-    - url: https://api.spycloud.io/sp-v2
     get:
       summary: Get records by email address
       description: ''
@@ -139,9 +137,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/ips/{ip}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/ips/{ip}:
     get:
       summary: Get records by IP address
       description: ''
@@ -265,9 +263,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/usernames/{username}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/usernames/{username}:
     get:
       summary: Get records by usernames
       description: ''
@@ -376,9 +374,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/catalog/:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/catalog/:
     get:
       summary: List all breach metadata
       description: ''
@@ -430,9 +428,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/catalog/{id}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/catalog/{id}:
     get:
       summary: Get metadata for a breach
       description: ''
@@ -468,9 +466,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/phone-numbers/{phone_number}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/phone-numbers/{phone_number}:
     get:
       summary: Get records by phone number
       description: ''
@@ -582,9 +580,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/domains/{domain}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/domains/{domain}:
     get:
       summary: Get records by domain
       description: ''
@@ -673,9 +671,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/health-insurance-ids/{health_insurance_id}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/health-insurance-ids/{health_insurance_id}:
     get:
       summary: Get records by Health Insurance ID
       description: ''
@@ -738,9 +736,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/bank-numbers/{bank_number}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/bank-numbers/{bank_number}:
     get:
       summary: Get records by bank number
       description: ''
@@ -808,9 +806,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/cc-numbers/{cc_number}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/cc-numbers/{cc_number}:
     get:
       summary: Get records by credit card number
       description: ''
@@ -874,9 +872,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/drivers-licenses/{drivers_license}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/drivers-licenses/{drivers_license}:
     get:
       summary: Get records by drivers license
       description: ''
@@ -944,9 +942,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/national-ids/{national_id}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/national-ids/{national_id}:
     get:
       summary: Get records by National ID
       description: ''
@@ -1014,9 +1012,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/passport-numbers/{passport_number}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/passport-numbers/{passport_number}:
     get:
       summary: Get records by passport number
       description: ''
@@ -1084,9 +1082,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  //breach/data/passwords/{password}:
     servers:
     - url: https://api.spycloud.io/sp-v2
+  //breach/data/passwords/{password}:
     get:
       description: ''
       operationId: get_breachdatapasswords{password}
@@ -1146,9 +1144,11 @@ paths:
         description: If hashing is enabled for your API key, you have the option to provide a 10 to 24 character, high entropy salt otherwise the pre-configured salt will be used.
       tags:
       - Breach
-  /breach/data/social-security-numbers/{social_security_number}:
+      summary: Get breachdatapasswords{password}
+      x-summary-source: derived
     servers:
     - url: https://api.spycloud.io/sp-v2
+  /breach/data/social-security-numbers/{social_security_number}:
     get:
       summary: Get records by Social Security Number
       description: ''
@@ -1216,9 +1216,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/passwords/{password}:
     servers:
-    - url: https://api.spycloud.io/enterprise-v2
+    - url: https://api.spycloud.io/sp-v2
+  /breach/data/passwords/{password}:
     get:
       summary: Get records by password
       description: ''
@@ -1338,9 +1338,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/watchlist:
     servers:
     - url: https://api.spycloud.io/enterprise-v2
+  /breach/data/watchlist:
     get:
       summary: Get all records in watchlist
       description: ''
@@ -1518,9 +1518,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/catalog:
     servers:
     - url: https://api.spycloud.io/enterprise-v2
+  /breach/catalog:
     get:
       summary: List all breach metadata
       description: ''
@@ -1608,9 +1608,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/infected-machine-ids/{infected_machine_id}:
     servers:
-    - url: https://api.spycloud.io/investigations-v2
+    - url: https://api.spycloud.io/enterprise-v2
+  /breach/data/infected-machine-ids/{infected_machine_id}:
     get:
       summary: Get records by Infected Machine ID
       description: ''
@@ -1690,9 +1690,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/log-ids/{log_id}:
     servers:
     - url: https://api.spycloud.io/investigations-v2
+  /breach/data/log-ids/{log_id}:
     get:
       summary: Get records by Log ID
       description: ''
@@ -1772,9 +1772,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/email-usernames/{email_username}:
     servers:
     - url: https://api.spycloud.io/investigations-v2
+  /breach/data/email-usernames/{email_username}:
     get:
       summary: Get records by email username
       description: ''
@@ -1859,9 +1859,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/social-handles/{social_handle}:
     servers:
     - url: https://api.spycloud.io/investigations-v2
+  /breach/data/social-handles/{social_handle}:
     get:
       summary: Get records by social handle
       description: ''
@@ -1946,9 +1946,9 @@ paths:
       deprecated: false
       tags:
       - Breach
-  /breach/data/cookie-domains/{cookie_domain}:
     servers:
-    - url: https://api.spycloud.io/sip-v1
+    - url: https://api.spycloud.io/investigations-v2
+  /breach/data/cookie-domains/{cookie_domain}:
     get:
       summary: Get cookies for domain
       description: ''
@@ -2030,6 +2030,8 @@ paths:
       deprecated: false
       tags:
       - Breach
+    servers:
+    - url: https://api.spycloud.io/sip-v1
 components:
   securitySchemes:
     sec0:
@@ -2037,11 +2039,11 @@ components:
       in: header
       name: x-api-key
 x-refined-from:
-- spycloud-consumer-ato-prevention-openapi.yml
-- spycloud-data-partnership-openapi.yml
-- spycloud-enterprise-ato-prevention-openapi.yml
-- spycloud-investigations-openapi.yml
-- spycloud-session-identity-protection-openapi.yml
+- spycloud-consumer-ato-prevention-openapi.json
+- spycloud-data-partnership-openapi.json
+- spycloud-enterprise-ato-prevention-openapi.json
+- spycloud-investigations-openapi.json
+- spycloud-session-identity-protection-openapi.json
 x-readme:
   headers: []
   explorer-enabled: true
