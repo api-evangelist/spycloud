@@ -1,0 +1,36 @@
+slug: spycloud
+provider: SpyCloud
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Breach
+  spec_file: spycloud-breach-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: 'GET /breach/data/emails/{email} "Get records by email address"; vendor: "Security, fraud,
+    identity and investigations teams query recaptured credentials"'
+  reason: Queries a recaptured-darknet breach corpus for exposed credentials and PII tied to an organisation's
+    identities — threat intelligence feeding detection and response. Not financial-crime alerting; sub-capability
+    choice between threat detection and IAM keeps confidence at 0.7.
+- tag: Compass
+  spec_file: spycloud-compass-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: GET /compass/data/devices/{infected_machine_id} "Get records for a device"; "List all devices",
+    "List all applications"
+  reason: Surfaces malware-infected machine and affected-application exposure records for security teams
+    — malware/threat exposure intelligence used in detection and response operations.
