@@ -1,0 +1,41 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+- https://azuremarketplace.microsoft.com/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-axvrdvn6gsaz2
+  listing_count: 2
+  apps:
+  - SpyCloud Enterprise Threat Protection
+  - SpyCloud Cybercrime Investigations
+  seller_name: SpyCloud
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=SpyCloud%2C%20Inc.
+  listing_count: 4
+  apps:
+  - SpyCloud Enterprise Protection for Microsoft Sentinel
+  - SpyCloud Enterprise Threat Protection
+  - SpyCloud Cybercrime Investigations
+  - SpyCloud Enterprise Threat Protection for Sentinel
+  seller_name: SpyCloud, Inc.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
